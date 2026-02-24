@@ -1,16 +1,17 @@
 import { SiFacebook, SiInstagram, SiLinkedin } from 'react-icons/si'
+import { AD_FACTORY_SLOGAN } from '../constants/copy'
 
+/** Company: sections inside WhoIsLaNeta (home). Each href is an anchor on the home page. */
 const COMPANY_LINKS = [
-  { href: 'https://www.laneta.com', label: 'About' },
-  { href: 'https://www.facebook.com/LaNetaSiempre', label: 'Facebook' },
-  { href: 'https://www.instagram.com/lanetasiempre/', label: 'Instagram' },
-  { href: 'https://www.linkedin.com/showcase/lanetasiempre', label: 'LinkedIn' },
+  { href: '/#who-is-la-neta', label: 'About us' },
+  { href: '/#what-we-achieved', label: "What we've achieved" },
+  { href: '/#our-creative-process', label: 'Our creative process' },
+  { href: '/#partnerships-alliances', label: 'Our ecosystem' },
 ] as const
 
-const SERVICES_LINKS = [
+/** The Ad Factory & Elevn Hub: solo estas dos opciones en la columna. */
+const PLATFORM_LINKS = [
   { href: '/the-ad-factory', label: 'The Ad Factory' },
-  { href: '/the-glitch', label: 'The Glitch' },
-  { href: '/the-hook-hunter', label: 'The Hook Hunter' },
   { href: '/#elevn', label: 'Elevn Hub' },
 ] as const
 
@@ -29,9 +30,9 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-700 bg-[var(--laneta-darker)] text-white">
       <div className="mx-auto max-w-6xl px-6 py-14 md:px-8">
-        {/* 4 columnas alineadas, espaciado uniforme */}
+        {/* 4 columnas: Logo, Company, The Ad Factory & Elevn Hub, Legal, Connect */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-12 lg:gap-y-0">
-          {/* Col 1: Logo + nombre + contacto */}
+          {/* Col 1: Logo + nombre + entidad */}
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <img
@@ -44,8 +45,7 @@ export function Footer() {
               />
               <span className="text-sm font-bold text-white">La Neta</span>
             </div>
-            <p className="text-sm text-slate-400">174 Nassau Street, Princeton, NJ 08542 USA</p>
-            <p className="text-sm text-slate-400">+52 1 55 3478 9920</p>
+            <p className="text-sm text-slate-400">Global Media Review Inc.</p>
           </div>
 
           {/* Col 2: Company */}
@@ -58,8 +58,6 @@ export function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="text-sm text-slate-400 transition-colors hover:text-[var(--laneta-pink)]"
                   >
                     {link.label}
@@ -69,13 +67,13 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: The Ad Factory */}
+          {/* Col 3: The Ad Factory & Elevn Hub */}
           <div className="flex flex-col">
             <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">
-              The Ad Factory
+              Our Platforms
             </h4>
             <ul className="space-y-2">
-              {SERVICES_LINKS.map((link) => (
+              {PLATFORM_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -132,10 +130,13 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-slate-700 pt-6">
-          <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-4">
+          <p className="text-center text-xs italic text-slate-500">
+            {AD_FACTORY_SLOGAN}
+          </p>
+          <div className="mt-4 flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-4">
             <p className="text-sm text-slate-500">
-              © 2026 La Neta · Powered by Elevn
-            </p>            
+              © 2026 La Neta · Leaders of the digital ecosystem
+            </p>
           </div>
         </div>
       </div>

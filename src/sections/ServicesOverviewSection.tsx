@@ -5,7 +5,9 @@
  * Not "Our Services" — positioned as "The System" / execution layers.
  */
 import { motion } from 'motion/react'
-import theFactoryImg from '../assets/the_factory.jpg'
+import { useContactModal } from '../contexts/ContactModalContext'
+
+const THE_AD_FACTORY_VIDEO_SRC = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ad_cafe.mp4'
 
 /** Accent for card decoration — La Neta palette to match light background. */
 const CARD_ACCENTS = ['purple', 'pink', 'purple', 'pink'] as const
@@ -25,7 +27,7 @@ const EXECUTION_SERVICES = [
     value: 'UGC creators optimized for performance hooks and conversions.',
     forLabel: 'For growth teams',
     ctaLabel: 'View creator execution',
-    href: '#the-hook-hunter',
+    href: '#hook-hunter',
   },
   {
     tagline: 'Scaling Layer',
@@ -92,6 +94,7 @@ function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
 }
 
 export function ServicesOverviewSection() {
+  const { openModal } = useContactModal()
   return (
     <section id="system-overview" className="scroll-mt-24">
       <motion.div
@@ -123,10 +126,14 @@ export function ServicesOverviewSection() {
             aria-hidden
             className="absolute inset-0"
           >
-            <img
-              src={theFactoryImg}
-              alt=""
+            <video
+              src={THE_AD_FACTORY_VIDEO_SRC}
+              autoPlay
+              muted
+              loop
+              playsInline
               className="h-full w-full object-cover object-center"
+              aria-hidden
             />
             <div
               aria-hidden
@@ -137,7 +144,8 @@ export function ServicesOverviewSection() {
             aria-hidden
             className="absolute inset-x-0 top-0 z-10 h-0.5 bg-gradient-to-r from-[var(--laneta-purple)] via-[var(--laneta-pink)] to-[var(--laneta-blue)]"
           />
-          <div className="relative z-10 flex flex-col justify-end px-6 py-8 md:aspect-[21/9] md:min-h-0 md:px-10 md:py-10 lg:px-12">
+          {/* Content: min-height on small/medium so content isn't squashed; aspect 21/9 only from xl (1280px) up */}
+          <div className="relative z-10 flex min-h-[380px] flex-col justify-end px-4 py-8 sm:min-h-[420px] sm:px-6 sm:py-10 md:min-h-[460px] md:px-10 md:py-12 lg:min-h-[480px] lg:px-12 xl:min-h-0 xl:aspect-[21/9] xl:px-16 xl:py-14">
             <div
               aria-hidden
               className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[var(--laneta-purple)]/15 blur-3xl"
@@ -146,33 +154,41 @@ export function ServicesOverviewSection() {
               aria-hidden
               className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[var(--laneta-pink)]/15 blur-3xl"
             />
-            <div className="relative text-left">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 md:text-sm">
-                Platform / Operating System
+            <div className="relative w-full max-w-2xl text-left">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--laneta-pink)] sm:tracking-[0.25em] md:text-sm">
+                Content operating system
               </p>
-              <h3 className="mt-1 text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl">
+              <h3 className="mt-1.5 text-2xl font-extrabold tracking-tight text-white drop-shadow-sm sm:mt-2 sm:text-3xl md:text-4xl xl:text-5xl">
                 The Ad Factory
               </h3>
-              <p className="mt-2 text-base text-slate-300 md:text-lg">
-                Your content operating system
+              <p className="mt-3 text-base font-semibold leading-snug text-white/95 sm:mt-4 sm:text-lg md:text-xl">
+                Stop Guessing. Start Scaling. Performance-Driven Ads in 21 Days.
               </p>
-              <p className="mt-4 flex flex-wrap items-center gap-2 text-sm text-slate-400 md:gap-3">
-                <span>Strategy</span>
-                <span className="text-slate-500" aria-hidden>→</span>
-                <span>Production</span>
-                <span className="text-slate-500" aria-hidden>→</span>
-                <span>Distribution</span>
-                <span className="text-slate-500" aria-hidden>→</span>
-                <span className="font-semibold text-[var(--laneta-pink)]">Scale</span>
+              <p className="mt-2 text-sm leading-relaxed text-slate-300 sm:mt-3 sm:text-base md:text-lg">
+                We specialize in taking users from scroll to click through ads that build community and immediate credibility.
               </p>
-              <a
-                href="#service-presentation"
-                onClick={(e) => scrollToSection(e, '#service-presentation')}
-                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white/15 px-6 py-3 text-sm font-semibold text-white ring-1 ring-white/25 transition-colors hover:bg-white/25 focus:outline-none focus:ring-2 focus:ring-[var(--laneta-pink)] focus:ring-offset-2 focus:ring-offset-slate-900"
+              <ul className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-x-4 sm:gap-y-2 md:mt-6 md:gap-x-6 md:gap-y-3 lg:gap-x-8">
+                <li className="flex items-center gap-2.5 rounded-lg bg-white/10 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm ring-1 ring-white/10 sm:px-4 sm:py-2.5 md:text-base">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--laneta-pink)]/30 text-[var(--laneta-pink)]" aria-hidden>✓</span>
+                  We create UGC advertisements
+                </li>
+                <li className="flex items-center gap-2.5 rounded-lg bg-white/10 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm ring-1 ring-white/10 sm:px-4 sm:py-2.5 md:text-base">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--laneta-pink)]/30 text-[var(--laneta-pink)]" aria-hidden>✓</span>
+                  We edit videos
+                </li>
+                <li className="flex items-center gap-2.5 rounded-lg bg-white/10 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm ring-1 ring-white/10 sm:px-4 sm:py-2.5 md:text-base">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--laneta-pink)]/30 text-[var(--laneta-pink)]" aria-hidden>✓</span>
+                  We generate variants with AI
+                </li>
+              </ul>
+              <button
+                type="button"
+                onClick={() => openModal('adFactory')}
+                className="mt-6 w-full min-w-0 sm:mt-8 sm:w-auto sm:flex-initial inline-flex items-center justify-center gap-2.5 rounded-xl bg-[var(--laneta-purple)] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[var(--laneta-purple)]/25 transition-all hover:bg-[var(--laneta-pink)] hover:shadow-[var(--laneta-pink)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--laneta-pink)] focus:ring-offset-2 focus:ring-offset-slate-900 cursor-pointer"
               >
-                Explore platform
-                <span className="text-lg leading-none" aria-hidden>→</span>
-              </a>
+                Request a Free Consultation
+                <span className="text-xl leading-none" aria-hidden>→</span>
+              </button>
             </div>
           </div>
         </motion.div>

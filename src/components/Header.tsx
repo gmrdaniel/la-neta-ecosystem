@@ -1,19 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
-import { HiMenu, HiX, HiCog, HiArrowRight } from 'react-icons/hi'
-import { MdOutlineGroups3 } from "react-icons/md";
-import { RiVipCrownLine } from "react-icons/ri";
-import { PiWebhooksLogoDuotone } from "react-icons/pi";
-import { CgUserlane } from "react-icons/cg";
-import type { IconType } from 'react-icons'
-
-type ServiceChild = {
-  href: string
-  label: string
-  description: string
-  icon: IconType
-}
+import { HiMenu, HiX, HiArrowRight } from 'react-icons/hi'
 
 /** Services page nav: one link per section; each href must match a unique id so only one is active at a time. */
 const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
@@ -24,64 +12,19 @@ const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
   { href: '#empire', label: 'Empire Mode' },
 ]
 
-/** Home page: section anchors for scroll spy (pathname === '/'). Order matches DOM order. */
+/** Home page: section anchors for scroll spy (pathname === '/'). Only the 3 main sections. Order matches DOM order. */
 const HOME_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#who-is-la-neta', label: 'Who we are' },
+  { href: '#who-is-la-neta', label: 'About us' },
   { href: '#the-ad-factory', label: 'The Ad Factory' },
-  { href: '#partnerships-alliances', label: 'Partnerships' },
   { href: '#elevn', label: 'Elevn Hub' },
-  { href: '#branch-offices', label: 'Branch offices' },
 ]
 
-const NAV_LINKS: (
-  | { href: string; label: string }
-  | { label: string; children: ServiceChild[] }
-)[] = [
-  { href: '#who-is-la-neta', label: 'Who we are' },
-  {
-    href: '#service-presentation', label: 'The Ad Factory',
-    children: [
-      {
-        href: '/the-ad-factory',
-        label: 'The Ad Factory',
-        description: 'Full-service creative engine',
-        icon: HiCog,
-      },
-      {
-        href: '/the-ad-factory#the-glitch',
-        label: 'The Glitch',
-        description: 'Creative experimentation lab',
-        icon: CgUserlane,
-      },
-      {
-        href: '/the-ad-factory#the-hook-hunter',
-        label: 'The Hook Hunter',
-        description: 'High-performing hooks system',
-        icon: PiWebhooksLogoDuotone,
-      },
-      {
-        href: '/the-ad-factory#amplifier',
-        label: 'The Amplifier',
-        description: 'Scale winning hooks across three creators',
-        icon: MdOutlineGroups3,
-      },
-      {
-        href: '/the-ad-factory#empire',
-        label: 'Empire Mode',
-        description: 'Own your category with five talents',
-        icon: RiVipCrownLine,
-      },
-    ],
-  },  
-  { href: '#partnerships-alliances', label: 'Partnerships' },
+/** Main nav on home: About us, The Ad Factory, Elevn Hub. Each scrolls to its section. Partnership is inside About us. */
+const NAV_LINKS: { href: string; label: string }[] = [
+  { href: '#who-is-la-neta', label: 'About us' },
+  { href: '#the-ad-factory', label: 'The Ad Factory' },
   { href: '#elevn', label: 'Elevn Hub' },
-  //{ href: '#branch-offices', label: 'Branch offices' },
 ]
-
-const isDropdown = (
-  link: (typeof NAV_LINKS)[number]
-): link is { label: string; children: ServiceChild[] } =>
-  'children' in link && Array.isArray(link.children)
 
 function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
   e.preventDefault()
@@ -101,8 +44,6 @@ export function Header() {
   const { pathname } = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
   const [activeSectionHref, setActiveSectionHref] = useState<string | null>(null)
   const isServicesPage =
     pathname === '/the-ad-factory' ||
@@ -252,76 +193,7 @@ export function Header() {
             </>
           ) : (
           <>
-          {NAV_LINKS.map((link) => {
-            if (isDropdown(link)) {
-              const dropdownHref = pathname === '/' ? '#the-ad-factory' : isServicesPage ? '#service-presentation' : '/the-ad-factory'
-              const isActive = activeSectionHref === (pathname === '/' ? '#the-ad-factory' : '#service-presentation')
-              return (
-                <div
-                  key={link.label}
-                  className="relative"
-                  onMouseEnter={() => setServicesDropdownOpen(true)}
-                  onMouseLeave={() => setServicesDropdownOpen(false)}
-                >
-                  <a
-                    href={dropdownHref}
-                    onClick={(e) => {
-                      if (pathname === '/') {
-                        e.preventDefault()
-                        scrollToSection(e, '#the-ad-factory')
-                      } else if (isServicesPage) {
-                        e.preventDefault()
-                        scrollToSection(e, '#service-presentation')
-                      }
-                      setServicesDropdownOpen(false)
-                    }}
-                    className={`cursor-pointer text-sm font-medium transition-colors ${
-                      isActive
-                        ? 'font-semibold text-[var(--laneta-pink)]'
-                        : isScrolled
-                          ? 'text-slate-700 hover:text-[var(--laneta-pink)]'
-                          : 'text-white/90 hover:text-white'
-                    } ${servicesDropdownOpen && !isActive ? (isScrolled ? 'text-[var(--laneta-pink)]' : 'text-white') : ''}`}
-                    aria-current={isActive ? 'location' : undefined}
-                  >
-                    {link.label}
-                  </a>
-                  <AnimatePresence>
-                    {servicesDropdownOpen && (
-                      <div className="absolute left-0 top-full pt-3">
-                        <motion.div
-                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                          transition={{ duration: 0.18, ease: 'easeOut' }}
-                          className="relative w-[420px] rounded-2xl border border-slate-200/80 bg-white/80 p-2 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] backdrop-blur-xl"
-                        >
-                          {link.children.map((sub) => {
-                            const Icon = sub.icon
-                            return (
-                              <a
-                                key={sub.href}
-                                href={sub.href}
-                                className="group flex items-start gap-4 rounded-xl p-4 transition-all hover:bg-gradient-to-r hover:from-[var(--laneta-purple)]/10 hover:to-[var(--laneta-pink)]/10"
-                              >
-                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--laneta-purple)]/10 text-[var(--laneta-purple)] transition-colors group-hover:bg-[var(--laneta-purple)] group-hover:text-white">
-                                  <Icon className="size-5" />
-                                </div>
-                                <div className="min-w-0">
-                                  <p className="font-semibold text-slate-800">{sub.label}</p>
-                                  <p className="text-sm text-slate-500">{sub.description}</p>
-                                </div>
-                              </a>
-                            )
-                          })}
-                        </motion.div>
-                      </div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              )
-            }
-            if ('href' in link) {
+            {NAV_LINKS.map((link) => {
               const isActive = activeSectionHref === link.href
               return (
                 <a
@@ -340,9 +212,7 @@ export function Header() {
                   {link.label}
                 </a>
               )
-            }
-            return null
-          })}
+            })}
             <a
               href="#lets-work-together"
               onClick={(e) => scrollToSection(e, '#lets-work-together')}
@@ -413,99 +283,26 @@ export function Header() {
                   })}
                 </>
               ) : NAV_LINKS.map((link) => {
-                if (isDropdown(link)) {
-                  return (
-                    <div key={link.label}>
-                      <div className="flex w-full items-center">
-                        <a
-                          href={pathname === '/' ? '#the-ad-factory' : isServicesPage ? '#service-presentation' : '/the-ad-factory'}
-                          onClick={(e) => {
-                            closeMobile()
-                            if (pathname === '/') {
-                              e.preventDefault()
-                              setTimeout(() => scrollToSectionById('#the-ad-factory'), 300)
-                            } else if (isServicesPage) {
-                              e.preventDefault()
-                              setTimeout(() => scrollToSectionById('#service-presentation'), 300)
-                            }
-                          }}
-                          className={`flex-1 rounded-lg px-4 py-3 font-medium hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)] ${
-                            activeSectionHref === (pathname === '/' ? '#the-ad-factory' : '#service-presentation')
-                              ? 'bg-[var(--laneta-purple)]/10 font-semibold text-[var(--laneta-purple)]'
-                              : 'text-slate-800'
-                          }`}
-                          aria-current={activeSectionHref === (pathname === '/' ? '#the-ad-factory' : '#service-presentation') ? 'location' : undefined}
-                        >
-                          {link.label}
-                        </a>
-                        <button
-                          type="button"
-                          onClick={() => setServicesOpen((o) => !o)}
-                          className="rounded-lg p-3 text-slate-500 hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)]"
-                          aria-expanded={servicesOpen}
-                        >
-                          {servicesOpen ? '−' : '+'}
-                        </button>
-                      </div>
-                      <AnimatePresence>
-                        {servicesOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="space-y-1 py-2">
-                              {link.children.map((sub) => {
-                                const Icon = sub.icon
-                                return (
-                                  <a
-                                    key={sub.href}
-                                    href={sub.href}
-                                    onClick={closeMobile}
-                                    className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-[var(--laneta-purple)]/10"
-                                  >
-                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--laneta-purple)]/10 text-[var(--laneta-purple)]">
-                                      <Icon className="size-4" />
-                                    </div>
-                                    <div>
-                                      <p className="font-semibold text-slate-800">{sub.label}</p>
-                                      <p className="text-xs text-slate-500">{sub.description}</p>
-                                    </div>
-                                  </a>
-                                )
-                              })}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )
-                }
-                if ('href' in link) {
-                  const isActive = activeSectionHref === link.href
-                  return (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        closeMobile()
-                        setTimeout(() => scrollToSectionById(link.href), 300)
-                      }}
-                      className={`rounded-lg px-4 py-3 text-left font-medium hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)] ${
-                        isActive
-                          ? 'bg-[var(--laneta-purple)]/10 font-semibold text-[var(--laneta-purple)]'
-                          : 'text-slate-800'
-                      }`}
-                      aria-current={isActive ? 'location' : undefined}
-                    >
-                      {link.label}
-                    </a>
-                  )
-                }
-                return null
+                const isActive = activeSectionHref === link.href
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      closeMobile()
+                      setTimeout(() => scrollToSectionById(link.href), 300)
+                    }}
+                    className={`rounded-lg px-4 py-3 text-left font-medium hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)] ${
+                      isActive
+                        ? 'bg-[var(--laneta-purple)]/10 font-semibold text-[var(--laneta-purple)]'
+                        : 'text-slate-800'
+                    }`}
+                    aria-current={isActive ? 'location' : undefined}
+                  >
+                    {link.label}
+                  </a>
+                )
               })}
               <a
                 href="#lets-work-together"

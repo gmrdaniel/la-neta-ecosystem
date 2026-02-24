@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import {
   SiMeta,
   SiPinterest,
-  SiAmd,
+  // SiAmd, // AMD commented
   SiSony,
   SiAudi,
   SiXiaomi,
@@ -22,7 +22,7 @@ const BRAND_COLORS: Record<string, string> = {
   meta: '#1877F2',       // Meta blue
   pinterest: '#E60023',   // Pinterest red
   tubi: '#F7F590',       // Tubi yellow
-  amd: '#ED1C24',        // AMD red
+  // amd: '#ED1C24',        // AMD red (commented)
   sony: '#000000',       // Sony black
   audi: '#BB0A30',       // Audi red
   xiaomi: '#FF6900',     // Xiaomi orange
@@ -249,18 +249,18 @@ const CLOSER_FRIENDS: Brand[] = [
   { id: 'nestle', name: 'Nestlé', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/nestle-logo.png', since: '2022', campaigns: 12, imageScale: 0.75 },
   { id: 'nescafe', name: 'Nescafé', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Nescafe_logo.png', since: '2022', campaigns: 10 },
   { id: 'sony', name: 'Sony', type: 'icon', icon: SiSony, since: '2021', campaigns: 22, iconSize: 44, brandColor: BRAND_COLORS.sony },
-  { id: 'amd', name: 'AMD', type: 'icon', icon: SiAmd, since: '2022', campaigns: 15, iconSize: 44, brandColor: BRAND_COLORS.amd },
+  // { id: 'amd', name: 'AMD', type: 'icon', icon: SiAmd, since: '2022', campaigns: 15, iconSize: 44, brandColor: BRAND_COLORS.amd },
   { id: 'xiaomi', name: 'Xiaomi', type: 'icon', icon: SiXiaomi, since: '2023', campaigns: 8, brandColor: BRAND_COLORS.xiaomi },
   { id: 'max', name: 'Max', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/max-logo.png', since: '2023', campaigns: 5 },
   { id: 'mercadopago', name: 'Mercado Pago', type: 'icon', icon: SiMercadopago, since: '2022', campaigns: 13, brandColor: BRAND_COLORS.mercadopago },
   { id: 'audi', name: 'Audi', type: 'icon', icon: SiAudi, since: '2021', campaigns: 18, iconSize: 44, brandColor: BRAND_COLORS.audi },
-  { id: 'dentalia', name: 'Dentalia', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/dentalia-logo.png', since: '2023', campaigns: 6 },
+  // { id: 'dentalia', name: 'Dentalia', type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/dentalia-logo.png', since: '2023', campaigns: 6 },
   { id: 'levis', name: "Levi's", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/levis-logo.png', since: '2022', campaigns: 11 },
   { id: 'temu', name: "Temu", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Temu-Logo.png', since: '2022', campaigns: 7 },
   { id: 'burgerking', name: "Burger King", type: 'icon', icon: SiBurgerking, since: '2020', campaigns: 9, brandColor: BRAND_COLORS.burgerking },
   { id: 'sears', name: "Sears", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/sears-logo.png', since: '2022', campaigns: 7 },
   { id: 'liverpool', name: "Liverpool", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/liverpool-logo.png', since: '2022', campaigns: 20, imageScale: .9 },
-  { id: 'InComm-InCentives', name: "InComm InCentives", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/InComm-Incentives-logo.png', since: '2018', campaigns: 11, imageScale: .9 },
+  // { id: 'InComm-InCentives', name: "InComm InCentives", type: 'image', image: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/InComm-Incentives-logo.png', since: '2018', campaigns: 11, imageScale: .9 },
 ]
 
 /** Generate deterministic but varied stats per ally for dashboard credibility */
@@ -627,7 +627,7 @@ export function PartnershipsAlliances() {
           </div>
         </motion.div>
 
-        {/* Our Closer Friends*/}
+        {/* Trusted by — brands we work with */}
         <motion.div
           className="rounded-2xl border border-slate-200 bg-slate-50/80 px-6 py-8 md:px-10 md:py-10"
           initial={{ opacity: 0, y: 20 }}
@@ -635,9 +635,12 @@ export function PartnershipsAlliances() {
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h3 className="mb-6 text-center text-lg font-bold text-slate-700 md:text-xl">
-            Our Closer Friends
-          </h3>
+          <div className="mb-8 text-center">
+            <h3 className="text-2xl font-extrabold tracking-tight text-slate-800 md:text-3xl">
+              Trusted by <span className="bg-gradient-to-r from-[var(--laneta-purple)] to-[var(--laneta-pink)] bg-clip-text text-transparent">leading names</span>
+            </h3>
+            <div className="mx-auto mt-3 h-0.5 w-16 rounded-full bg-gradient-to-r from-[var(--laneta-purple)] to-[var(--laneta-pink)]" aria-hidden />
+          </div>
 
           {/* mini dashboard */}
           <div className="mb-8">

@@ -11,6 +11,7 @@ import {
   HiCash,
   HiArrowRight,
 } from 'react-icons/hi'
+import { AD_FACTORY_SLOGAN } from '../constants/copy'
 import { SiMeta, SiPinterest } from 'react-icons/si'
 import { MdAddReaction } from 'react-icons/md'
 import { ImEye } from 'react-icons/im'
@@ -18,10 +19,10 @@ import { FaPhotoVideo } from 'react-icons/fa'
 import type { IconType } from 'react-icons'
 
 const STATS = [
-  { value: 2, suffix: 'B', label: 'Billion impressions', unit: 'billion', icon: MdAddReaction },
-  { value: 1, suffix: 'M', label: 'Million dollars', unit: 'million', icon: HiCash },
-  { value: 100, suffix: 'M', label: 'Million views per year', unit: 'million', icon: ImEye },
-  { value: 2, suffix: 'k+', label: 'Videos produced', unit: 'k', icon: FaPhotoVideo },
+  { value: 2, suffix: 'B', label: 'impressions generated', unit: 'billion', icon: MdAddReaction },
+  { value: 1, suffix: 'M', label: 'in revenue', unit: 'million', icon: HiCash },
+  { value: 100, suffix: 'M', label: 'views per year', unit: 'million', icon: ImEye },
+  { value: 2, suffix: 'K+', label: 'Videos produced', unit: 'k', icon: FaPhotoVideo },
 ] as const
 
 const OFFER_SLIDES = [
@@ -36,7 +37,7 @@ const OFFER_SLIDES = [
   {
     icon: HiUserGroup,
     title: 'Top-Tier Talent',
-    metric: '2,000+',
+    metric: '4,000+',
     metricLabel: 'vetted creators in our network',
     impact: 'Real people. Real results. No dead weight.',
     copy: 'We handpick creators who actually move the needle. Access to the best talent across niches and regions. Your brand in the right hands, every time.',
@@ -55,7 +56,7 @@ const OFFER_SLIDES = [
     metric: '100%',
     metricLabel: 'turnkey production',
     impact: 'From idea to live campaign—we own it.',
-    copy: 'Strategy, talent, production, and distribution under one roof. You bring the vision; we bring the creative execution that makes you global.',
+    copy: AD_FACTORY_SLOGAN,
   },
   {
     icon: HiChartBar,
@@ -79,6 +80,33 @@ const OFFER_AUTO_ADVANCE_MS = 5500
 
 const VIDEO_PLAYBACK_RATE = 0.55
 
+/** Convierte value + unit al número objetivo (ej. 2 + 'billion' → 2e9). */
+function getTargetNumber(val: number, unit: string): number {
+  if (unit === 'billion') return val * 1e9
+  if (unit === 'million') return val * 1e6
+  if (unit === 'k') return val * 1e3
+  return val
+}
+
+/** Formatea un número para mostrar con K/M/B según la magnitud. */
+function formatScaled(
+  num: number,
+  finalSuffix: string
+): { value: string; suffix: string } {
+  if (num === 0) return { value: '0', suffix: '' }
+  if (num >= 1e9) return { value: (num / 1e9).toFixed(0), suffix: 'B' }
+  if (num >= 1e6) {
+    const v = num / 1e6
+    return { value: v >= 10 ? v.toFixed(0) : v.toFixed(1).replace(/\.0$/, ''), suffix: 'M' }
+  }
+  if (num >= 1e3) {
+    const v = num / 1e3
+    const suffix = finalSuffix === 'K+' ? 'K+' : 'K'
+    return { value: v >= 10 ? v.toFixed(0) : v.toFixed(1).replace(/\.0$/, ''), suffix }
+  }
+  return { value: Math.round(num).toString(), suffix: '' }
+}
+
 function StatCard({
   value,
   suffix,
@@ -94,29 +122,36 @@ function StatCard({
   index: number
   icon: IconType
 }) {
-  const numRef = useRef<HTMLSpanElement>(null)
+  const valueRef = useRef<HTMLSpanElement>(null)
+  const suffixRef = useRef<HTMLSpanElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
   const labelRef = useRef<HTMLParagraphElement>(null)
+  const progressRef = useRef({ p: 0 })
 
   useEffect(() => {
-    const el = numRef.current
+    const valueEl = valueRef.current
+    const suffixEl = suffixRef.current
     const labelEl = labelRef.current
-    if (!el) return
-    const end =
-      unit === 'billion' ? 2 : unit === 'million' ? (value === 100 ? 100 : 1) : 2
+    if (!valueEl || !suffixEl) return
+
+    const targetNumber = getTargetNumber(value, unit)
     const delay = 0.9 + index * 0.2
+    if (targetNumber <= 0) return
+
     if (labelEl) gsap.set(labelEl, { opacity: 0, y: 8 })
+
     gsap.fromTo(
-      el,
-      { textContent: 0 },
+      progressRef.current,
+      { p: 0 },
       {
-        textContent: end,
-        duration: 2.4,
+        p: 1,
+        duration: 2.6,
         delay,
-        ease: 'power2.out',
-        snap: { textContent: 1 },
+        ease: 'power2.inOut',
         overwrite: true,
         onStart: () => {
+          valueEl.textContent = '0'
+          suffixEl.textContent = ''
           if (cardRef.current) {
             gsap.to(cardRef.current, {
               scale: 1.02,
@@ -126,7 +161,20 @@ function StatCard({
             })
           }
         },
+        onUpdate: () => {
+          const p = progressRef.current.p
+          const raw = p <= 0 ? 0 : Math.pow(10, p * Math.log10(targetNumber))
+          const { value: displayValue, suffix: displaySuffix } = formatScaled(raw, suffix)
+          valueEl.textContent = displayValue
+          suffixEl.textContent = displaySuffix
+        },
         onComplete: () => {
+          const { value: displayValue, suffix: displaySuffix } = formatScaled(
+            targetNumber,
+            suffix
+          )
+          valueEl.textContent = displayValue
+          suffixEl.textContent = displaySuffix
           if (cardRef.current) {
             gsap.to(cardRef.current, {
               scale: 1,
@@ -142,7 +190,7 @@ function StatCard({
         },
       }
     )
-  }, [index, value, unit])
+  }, [index, value, unit, suffix])
 
   return (
     <motion.div
@@ -190,8 +238,8 @@ function StatCard({
         <Icon size={96} />
       </span>
       <p className="relative mb-1 font-mono text-3xl font-bold tracking-tight text-white md:text-4xl">
-        <span ref={numRef}>0</span>
-        <span className="text-[var(--laneta-pink)]">{suffix}</span>
+        <span ref={valueRef}>0</span>
+        <span ref={suffixRef} className="text-[var(--laneta-pink)]" />
       </p>
       <p ref={labelRef} className="relative text-sm font-medium text-white/80">
         {label}
@@ -594,7 +642,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p className="mt-3 text-base font-medium text-white/70 md:text-lg">
-            500+ brands powered · 98% client retention
+            500+ power brands · 98% client retention
           </p>
         </motion.div>
 

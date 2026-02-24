@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { FloatingCard } from '../../components/FloatingCard'
-import { HiXCircle, HiCheckCircle } from 'react-icons/hi'
+import { HiXCircle, HiCheckCircle, HiArrowRight } from 'react-icons/hi'
+import { useContactModal } from '../../contexts/ContactModalContext'
 import { BiSolidTimer } from 'react-icons/bi'
 import { RiAdvertisementFill } from 'react-icons/ri'
 import { FaUsersLine } from "react-icons/fa6";
@@ -32,7 +33,7 @@ const TRANSFORMATION_ROWS: {
   },
   {
     problem: "You don't have any content creators",
-    solution: 'We have a network of 2,000+ creators',
+    solution: 'We have a network of 4,000+ creators',
     tagline: 'Curated talent, ready to perform for your brand.',
     icon: FaUsersLine,
     iconPosition: 'right',
@@ -61,6 +62,8 @@ const TRANSFORMATION_ROWS: {
 ]
 
 export function ProblemsVsSolutionsSection() {
+  const { openModal } = useContactModal()
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -154,6 +157,14 @@ export function ProblemsVsSolutionsSection() {
             <p className="mt-2 text-sm text-slate-500">
               The Ad Factory turns creative chaos into ads that scale.
             </p>
+            <button
+              type="button"
+              onClick={() => openModal('hookHunter')}
+              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--laneta-purple)] to-[var(--laneta-pink)] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-[var(--laneta-purple)]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[var(--laneta-purple)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 focus:ring-offset-white cursor-pointer"
+            >
+              Help Me Choose a Pack
+              <HiArrowRight className="size-5" aria-hidden />
+            </button>
           </div>
         </div>
       </FloatingCard>

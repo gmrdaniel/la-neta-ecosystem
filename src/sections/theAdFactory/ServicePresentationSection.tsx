@@ -7,7 +7,7 @@ import { DiCodeigniter } from 'react-icons/di'
 import { FloatingCard } from '../../components/FloatingCard'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
-const VIDEO_SRC = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ad_cafe.mp4'
+//const VIDEO_SRC = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ad_cafe.mp4'
 const SCROLL_CLICK_IMAGE = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/ad_laneta.png'
 
 const FEATURES = [
@@ -128,7 +128,7 @@ export function ServicePresentationSection() {
       />
 
       <div className="relative space-y-4 lg:space-y-5">
-        {/* 1. HERO — Video as protagonist, floating title; en móvil el bloque ocupa ~70vh y el título el doble de grande */}
+        {/* 1. HERO — Video as protagonist, floating title; en móvil el bloque ocupa ~70vh y el título el doble de grande 
         <div className="relative h-[70vh] min-h-[380px] overflow-hidden rounded-2xl bg-slate-900 shadow-2xl ring-1 ring-slate-200/80 md:h-auto md:min-h-0">
           <video
             src={VIDEO_SRC}
@@ -141,7 +141,7 @@ export function ServicePresentationSection() {
             <track kind="captions" />
             Your browser does not support video playback.
           </video>
-          {/* Depth overlay — same as Hook Hunter for consistent card presentation */}
+          {/* Depth overlay — same as Hook Hunter for consistent card presentation 
           <div
             className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-tr from-black/20 via-transparent to-white/5"
             aria-hidden
@@ -162,7 +162,8 @@ export function ServicePresentationSection() {
             </p>
           </div>
         </div>
-
+        */}
+        
         {/* 2. Carousel — Full width, below video, ads displayed completely */}
         <FloatingCard variant="light" withAccentBar={false} className="w-full">
           <div className="mb-4 flex items-center justify-between">
@@ -372,7 +373,7 @@ export function ServicePresentationSection() {
                 </motion.div>
               ))}
             </div>
-          </div>
+        </div>
       </div>
     </motion.section>
   )

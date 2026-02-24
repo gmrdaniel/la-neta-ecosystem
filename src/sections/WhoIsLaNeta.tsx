@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect, memo } from 'react'
 import { motion } from 'motion/react'
 import gsap from 'gsap'
+import { HiArrowRight } from 'react-icons/hi'
+import { useContactModal } from '../contexts/ContactModalContext'
 
 const SECTION_ID = 'who-is-la-neta'
 
@@ -49,18 +51,18 @@ const IMAGES = {
 const STORY = {
   hook: "One team. Clear timelines. Full rights to the content. We run the entire pipeline so your brand can focus on strategy—not logistics.",
   paragraphs: [
-    "Brands and marketing teams choose us because they get one partner for the full pipeline: strategy, talent, production, and distribution. We built a vetted network of 2,000+ creators and a proven process so you can scale creative output without scaling headcount or operational friction. No guesswork—clear deliverables, clear ownership, and results that compound.",
+    "Brands and marketing teams choose us because they get one partner for the full pipeline: strategy, talent, production, and distribution. We built a vetted network of 4,000+ creators and a proven process so you can scale creative output without scaling headcount or operational friction. No guesswork—clear deliverables, clear ownership, and results that compound.",
     "We're built for performance. Every ad we produce is designed to move users from scroll to click—authentic, platform-native, and optimized for the channels that drive your business. Whether you're a growth team, a brand manager, or a CMO looking to own the feed, we bring the execution; you keep control of the strategy and the vision.",
   ],
 }
 
 const METRICS = [
-  { value: '2,000+', label: 'Creators in our network', sub: 'Vetted, active, ready to perform' },
+  { value: '4,000+', label: 'Creators in our network', sub: 'Vetted, active, ready to perform' },
   { value: '15+', label: 'Countries', sub: 'Local talent, global reach' },
   { value: '2B+', label: 'Impressions delivered', sub: 'Across platforms and formats' },
   { value: '98%', label: 'Client retention', sub: 'Brands that scale with us stay' },
-  { value: '21', label: 'Days avg. to delivery', sub: 'From brief to live creative' },
-  { value: '500+', label: 'Brands powered', sub: 'From startups to household names' },
+  { value: '21 days', label: 'Delivery time', sub: 'From brief to live creative' },
+  { value: '500+', label: 'Power Brands', sub: 'From startups to household names' },
 ]
 
 const PROCESS_STEPS = [
@@ -275,10 +277,11 @@ function ProcessStepCard({
 }
 
 export function WhoIsLaNeta() {
+  const { openModal } = useContactModal()
   return (
     <section
       id={SECTION_ID}
-      className="relative overflow-hidden border-b-0 bg-slate-50 py-20 md:py-28 shadow-none"
+      className="relative overflow-hidden border-b-0 bg-slate-50 py-20 md:py-28 shadow-none scroll-mt-24"
       style={{ contentVisibility: 'auto' }}
     >
       <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-8">
@@ -363,13 +366,25 @@ export function WhoIsLaNeta() {
               </div>
             </div>
           </div>
+          <div className="mt-10 flex justify-center md:justify-start">
+            <button
+              type="button"
+              onClick={() => openModal('global')}
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--laneta-purple)] px-6 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 cursor-pointer"
+            >
+              Talk to Our Team
+              <HiArrowRight className="size-5" />
+            </button>
+          </div>
         </motion.div>
-        
-        {/* Creator types */}
-        <CreatorTypesCarousel />
+
+        {/* Creator types — Our ecosystem */}
+        <div id="our-ecosystem" className="scroll-mt-24">
+          <CreatorTypesCarousel />
+        </div>
 
         {/* Metrics dashboard */}
-        <div className="mb-20 md:mb-28">
+        <div id="what-we-achieved" className="mb-20 scroll-mt-24 md:mb-28">
           <motion.h3
             layout={false}
             className="mb-8 text-center text-xl font-bold text-[var(--laneta-blue)] md:text-2xl"
@@ -394,7 +409,7 @@ export function WhoIsLaNeta() {
         </div>
 
         {/* Creative process */}
-        <div>
+        <div id="our-creative-process" className="scroll-mt-24">
           <motion.h3
             layout={false}
             className="mb-4 text-center text-xl font-bold text-[var(--laneta-blue)] md:text-2xl"

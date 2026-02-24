@@ -6,30 +6,34 @@
  */
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { motion } from 'motion/react'
 import { LiquidGlassBackground } from '../components/LiquidGlassBackground'
 import { Footer } from '../components/Footer'
-import { ServicePresentationSection as AdFactoryPresentation } from '../sections/theAdFactory/ServicePresentationSection'
+//import { ServicePresentationSection as AdFactoryPresentation } from '../sections/theAdFactory/ServicePresentationSection'
 import { ProblemsVsSolutionsSection } from '../sections/theAdFactory/ProblemsVsSolutionsSection'
 import { ModusOperandiSection } from '../sections/theAdFactory/ModusOperandiSection'
-import { ServicePresentationSection as GlitchPresentation } from '../sections/theGlitch/ServicePresentationSection'
-import { ProductValueSection as GlitchProductValue } from '../sections/theGlitch/ProductValueSection'
-import { AIAgentVideosSection } from '../sections/theGlitch/AIAgentVideosSection'
-import { PackIncludesSection as GlitchPackIncludes } from '../sections/theGlitch/PackIncludesSection'
-import { ServicePresentationSection as HookHunterPresentation } from '../sections/theHookHunter/ServicePresentationSection'
-import { ProductValueSection as HookHunterProductValue } from '../sections/theHookHunter/ProductValueSection'
-import { UGCTalentsSection } from '../sections/theHookHunter/UGCTalentsSection'
+//import { ServicePresentationSection as GlitchPresentation } from '../sections/theGlitch/ServicePresentationSection'
+//import { ProductValueSection as GlitchProductValue } from '../sections/theGlitch/ProductValueSection'
+//import { AIAgentVideosSection } from '../sections/theGlitch/AIAgentVideosSection'
+//import { PackIncludesSection as GlitchPackIncludes } from '../sections/theGlitch/PackIncludesSection'
+//import { ServicePresentationSection as HookHunterPresentation } from '../sections/theHookHunter/ServicePresentationSection'
+//import { ProductValueSection as HookHunterProductValue } from '../sections/theHookHunter/ProductValueSection'
+//import { UGCTalentsSection } from '../sections/theHookHunter/UGCTalentsSection'
 import { PackIncludesSection as HookHunterPackIncludes } from '../sections/theHookHunter/PackIncludesSection'
 import { RoadmapSection } from '../sections/theAdFactory/RoadmapSection'
 import { LetsWorkTogetherSection } from '../sections/theAdFactory/LetsWorkTogetherSection'
 import { ServicesOverviewSection } from '../sections/ServicesOverviewSection'
+import { TrustedByBrandsSection } from '../sections/TrustedByBrandsSection'
+import { ServicesFAQSection } from '../sections/ServicesFAQSection'
 
 export function ServicesPage() {
   const { hash } = useLocation()
 
-  // Scroll to section when landing with a hash (e.g. /the-ad-factory#the-glitch). In SPAs the DOM may not be ready on first paint.
+  // Default view: top of page (The Ad Factory overview). When no hash, scroll to start so Ad Factory is the first thing seen.
   useEffect(() => {
-    if (!hash) return
+    if (!hash) {
+      window.scrollTo(0, 0)
+      return
+    }
     const id = hash.slice(1)
     const scrollToEl = () => {
       const el = document.getElementById(id)
@@ -55,19 +59,19 @@ export function ServicesPage() {
             {/* Decision layer: system overview (1 platform + 4 execution modes) before detail */}
             <ServicesOverviewSection />
 
+            {/* Brands that trust us — 5–6 logos + Discover Our Packages CTA */}
+            <TrustedByBrandsSection />
+
             {/* The Ad Factory — detail */}
-            <div id="service-presentation" className="scroll-mt-24">
+            {/*<div id="service-presentation" className="scroll-mt-24">
               <AdFactoryPresentation />
-            </div>
+            </div>*/}
             <div id="problems-vs-solutions" className="scroll-mt-24">
               <ProblemsVsSolutionsSection /> 
             </div>
-            <div id="modus-operandi" className="scroll-mt-24">
-              <ModusOperandiSection />
-            </div>
 
             {/* Bridge: execution modes — intro to The Glitch (light theme) */}
-            <motion.section
+            {/*<motion.section
               id="execution-modes"
               className="scroll-mt-24"
               initial={{ opacity: 0, y: 20 }}
@@ -106,17 +110,17 @@ export function ServicesPage() {
                 </div>
               </div>
             </motion.section>
-
+            */}
             {/* The Glitch */}
-            <div id="the-glitch" className="scroll-mt-24 space-y-16">
+            {/*<div id="the-glitch" className="scroll-mt-24 space-y-16">
               <GlitchPresentation />
               <GlitchProductValue />
               <AIAgentVideosSection />
               <GlitchPackIncludes />
             </div>
-
+            */}
             {/* Bridge: intro to The Hook Hunter + variants (light theme) */}
-            <motion.section
+            {/*<motion.section
               id="execution-modes-creator"
               className="scroll-mt-24"
               initial={{ opacity: 0, y: 20 }}
@@ -163,19 +167,26 @@ export function ServicesPage() {
                 </div>
               </div>
             </motion.section>
-
+            */}
             {/* The Hook Hunter */}
             <div id="the-hook-hunter" className="scroll-mt-24 space-y-16">
-              <HookHunterPresentation variant="1" />
-              <HookHunterProductValue />
-              <UGCTalentsSection />
+              {/*<HookHunterPresentation variant="1" />*/}
+              {/*<HookHunterProductValue />*/}
+              {/*<UGCTalentsSection />*/}
               <HookHunterPackIncludes />
+            </div>
+
+            <div id="modus-operandi" className="scroll-mt-24">
+              <ModusOperandiSection />
             </div>
 
             {/* One general roadmap for all services */}
             <div id="roadmap" className="scroll-mt-24">
               <RoadmapSection />
             </div>
+
+            {/* FAQ */}
+            <ServicesFAQSection />
 
             <div id="lets-work-together" className="scroll-mt-24">
               <LetsWorkTogetherSection variant="hookHunter" />

@@ -140,8 +140,8 @@ const CREATOR_PROFILES: CreatorProfile[] = [
 
 const ELEVN_LOGO = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/elevn.png'
 
-/** CTA "Be one of the first to join" — link to landing / waitlist. Change to full URL if you have a dedicated landing. */
-const JOIN_LANDING_URL = '#lets-work-together'
+/** CTA "Be one of the first to join" — link to Elevn waitlist landing. */
+const JOIN_LANDING_URL = 'https://elevn-lpfe.vercel.app'
 
 const PLATFORM_INSIGHTS = [
   { label: 'Connection with top creators worldwide', short: 'Access a global network of vetted talent across 15+ countries.' },
@@ -319,12 +319,8 @@ export function CreatorSupplyEcosystem() {
             </p>
             <a
               href={JOIN_LANDING_URL}
-              onClick={(e) => {
-                if (JOIN_LANDING_URL.startsWith('#')) {
-                  e.preventDefault()
-                  document.querySelector(JOIN_LANDING_URL)?.scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-4 inline-flex items-center justify-center rounded-xl bg-[var(--laneta-purple)] px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 md:mt-5"
             >
               Be one of the first to join
@@ -393,7 +389,7 @@ export function CreatorSupplyEcosystem() {
               Creator Supply on Elevn
             </p>
             <h3 className="text-2xl font-extrabold tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
-              <span className="text-[var(--laneta-pink)]">2,000+</span> vetted creators <span className="text-[var(--laneta-blue)]">curated for your campaigns</span>
+              <span className="text-[var(--laneta-pink)]">4,000+</span> vetted creators <span className="text-[var(--laneta-blue)]">curated for your campaigns</span>
             </h3>
           </div>
 

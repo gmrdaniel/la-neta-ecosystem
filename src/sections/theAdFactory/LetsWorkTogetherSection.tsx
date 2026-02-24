@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { FloatingCard } from '../../components/FloatingCard'
 import { HiArrowRight, HiX } from 'react-icons/hi'
+import { useContactModal, type ContactModalVariant } from '../../contexts/ContactModalContext'
+import { AD_FACTORY_SLOGAN } from '../../constants/copy'
 
 const LETS_TALK_IMAGE = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/lets_talk.png'
 
@@ -20,9 +22,20 @@ const SERVICE_TOPIC_OPTIONS: { label: string; value: string }[] = [
   { label: 'The Ad Factory (Advertising / influencer campaigns)', value: 'The Ad Factory (Campañas publicitarias/de influencia)' },
   { label: 'The Glitch (Content / media strategy)', value: 'The Glitch (Estrategia de contenido/Medios)' },
   { label: 'The Hook Hunter (Opportunity / trend identification)', value: 'The Hook Hunter (Identificación de oportunidades/Tendencias)' },
+  { label: 'The Amplifier (Surround audience with consistent proof)', value: 'The Amplifier (Rodear a la audiencia con prueba consistente)' },
+  { label: 'Empire Mode (Category visibility / strategic saturation)', value: 'Empire Mode (Visibilidad de categoría/Saturación estratégica)' },
   { label: 'Partnership / general collaboration', value: 'Partnership/Colaboración general' },
   { label: 'Other topic', value: 'Otro tema' },
 ]
+
+const VARIANT_TO_SERVICE_TOPIC: Record<ContactModalVariant, string> = {
+  adFactory: 'The Ad Factory (Campañas publicitarias/de influencia)',
+  glitch: 'The Glitch (Estrategia de contenido/Medios)',
+  hookHunter: 'The Hook Hunter (Identificación de oportunidades/Tendencias)',
+  amplifier: 'The Amplifier (Rodear a la audiencia con prueba consistente)',
+  empire: 'Empire Mode (Visibilidad de categoría/Saturación estratégica)',
+  global: '',
+}
 
 const URGENCY_LABELS: Record<string, string> = {
   1: 'Just exploring',
@@ -32,21 +45,21 @@ const URGENCY_LABELS: Record<string, string> = {
   5: 'We need it as soon as possible'
 }
 
-type LetsWorkTogetherVariant = 'adFactory' | 'glitch' | 'hookHunter' | 'global'
+type LetsWorkTogetherVariant = ContactModalVariant
 
 const COPY = {
   global: {
     intro: "Have a vision you'd like to bring to life? Let's talk.",
     body: "Whether you need UGC ads, AI-powered content, high-performing hooks, or a full creative pipeline—we're here to help your brand scale. Share your goals, timelines, or a rough idea. We'll match you with the right solution and get back to you with next steps.",
-    quote: 'You bring the idea.',
-    quoteAccent: 'We bring the infrastructure—content, talent, and execution.',
+    quote: AD_FACTORY_SLOGAN.split('. ')[0] + '.',
+    quoteAccent: AD_FACTORY_SLOGAN.split('. ').slice(1).join('. '),
     messagePlaceholder: "Tell us about your brand and what you're looking for. Campaign goals, preferred formats, timeline—whatever helps us get started.",
   },
   adFactory: {
     intro: "Do you have an idea you'd like to bring to life? Don't waste time and talk to us.",
     body: "Whether you need ads that convert, creative that stands out, or a full pipeline from brief to feed—we're here to turn your vision into reality. Share your goals, timelines, or a rough concept. We'll get back to you with next steps.",
-    quote: 'You bring the idea.',
-    quoteAccent: 'We bring the execution.',
+    quote: AD_FACTORY_SLOGAN.split('. ')[0] + '.',
+    quoteAccent: AD_FACTORY_SLOGAN.split('. ').slice(1).join('. '),
     messagePlaceholder: 'What do you want to bring to life? Campaign goals, formats, timeline—share whatever helps us get started.',
   },
   glitch: {
@@ -63,6 +76,20 @@ const COPY = {
     quoteAccent: 'We bring the UGC talents and hooks that convert.',
     messagePlaceholder: 'Which pack interests you—Hunter, Amplifier, or Empire? Share your campaign goals, timeline, and we\'ll reach out.',
   },
+  amplifier: {
+    intro: "Ready for hooks that convert? Let's talk about The Hook Hunter, The Amplifier, or Empire Mode.",
+    body: "Whether you want to validate winning hooks with 1 talent (The Hook Hunter), dominate your feed with 3 (The Amplifier), or own your category with 5 (Empire Mode)—we're here to turn your vision into UGC content that performs. Share your goals, timelines, or pack preference. We'll get back to you with next steps.",
+    quote: 'You bring the idea.',
+    quoteAccent: 'We bring the UGC talents and hooks that convert.',
+    messagePlaceholder: 'Which pack interests you—Hunter, Amplifier, or Empire? Share your campaign goals, timeline, and we\'ll reach out.',
+  },
+  empire: {
+    intro: "Ready for hooks that convert? Let's talk about The Hook Hunter, The Amplifier, or Empire Mode.",
+    body: "Whether you want to validate winning hooks with 1 talent (The Hook Hunter), dominate your feed with 3 (The Amplifier), or own your category with 5 (Empire Mode)—we're here to turn your vision into UGC content that performs. Share your goals, timelines, or pack preference. We'll get back to you with next steps.",
+    quote: 'You bring the idea.',
+    quoteAccent: 'We bring the UGC talents and hooks that convert.',
+    messagePlaceholder: 'Which pack interests you—Hunter, Amplifier, or Empire? Share your campaign goals, timeline, and we\'ll reach out.',
+  },
 }
 
 const IFRAME_NAME = 'google-form-submit-target'
@@ -71,6 +98,7 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
   const copy = COPY[variant ?? 'adFactory']
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [serviceTopic, setServiceTopic] = useState(() => VARIANT_TO_SERVICE_TOPIC[variant ?? 'adFactory'])
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -217,6 +245,8 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
                   id="contact-service"
                   name="serviceTopic"
                   required
+                  value={serviceTopic}
+                  onChange={(e) => setServiceTopic(e.target.value)}
                   className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
                 >
                   <option value="">Choose</option>
@@ -285,9 +315,11 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
 const HOOK_HUNTER_ACCENT = '#f59e0b'
 
 export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: LetsWorkTogetherVariant }) {
-  const [modalOpen, setModalOpen] = useState(false)
+  const { modalOpen, variant: modalVariant, openModal, closeModal } = useContactModal()
   const copy = COPY[variant ?? 'adFactory']
   const isHookHunter = variant === 'hookHunter'
+  const showModal = modalOpen
+  const effectiveVariant = modalOpen ? modalVariant : variant
 
   const content = (
     <div className="relative grid gap-10 md:grid-cols-[1fr_1fr] md:items-center md:gap-12 lg:gap-16">
@@ -320,7 +352,7 @@ export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: L
         <div className="mt-8 flex justify-center md:justify-start">
           <button
             type="button"
-            onClick={() => setModalOpen(true)}
+            onClick={() => openModal(variant)}
             className="inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base font-semibold text-white shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white cursor-pointer hover:opacity-95"
             style={{
               backgroundColor: isHookHunter ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)',
@@ -364,8 +396,8 @@ export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: L
       </motion.section>
 
       <AnimatePresence>
-        {modalOpen && (
-          <ContactFormModal onClose={() => setModalOpen(false)} variant={variant} />
+        {showModal && (
+          <ContactFormModal onClose={closeModal} variant={effectiveVariant} />
         )}
       </AnimatePresence>
     </>

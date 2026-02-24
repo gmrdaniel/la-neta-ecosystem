@@ -1,4 +1,6 @@
 import { motion } from 'motion/react'
+import { useContactModal } from '../../contexts/ContactModalContext'
+import { HiArrowRight } from 'react-icons/hi'
 
 type ExecutionStrategy = {
   id: string
@@ -16,13 +18,27 @@ type ExecutionStrategy = {
 
 const STRATEGIES: ExecutionStrategy[] = [
   {
+    id: 'the-glitch',
+    name: 'AI-generated content. One avatar, 24 assets, 21 days.',
+    strategyHeadline: 'The Glitch',
+    forWho: 'Brands and marketing teams that want scale without headcount.',
+    description:
+      'One custom AI avatar speaks for your brand. No actors, no scheduling—just script, approve, and go. Two hero videos, six punchy clips, delivered in three formats (vertical, square, horizontal). Built for teams that need fast iteration, consistent voice, and full platform coverage from a single production.',
+    outcome: 'AI never rests. This package is your infinite testing engine to find out which message sells best',
+    accent: 'var(--laneta-blue)',
+    assets: 24,
+    production: ['1 AI Avatar', '2 videos of 15 seconds', '6 clips of 10 seconds', '3 video formats / 24 total contents'],
+    delivery: ['Delivery within 21 business days'],
+    rights: ['1 year of image use'],
+  },
+  {
     id: 'hook-hunter',
-    name: 'The Hook Hunter',
-    strategyHeadline: 'Validate winning hooks with one voice.',
+    name: 'Validate winning hooks with one voice.',
+    strategyHeadline: 'The Hook Hunter',
     forWho: 'Brands and growth teams testing creative direction.',
     description:
       'A single UGC talent executes your hooks so you can prove what resonates before scaling. Built for teams that need fast validation, clear performance signals, and a lean footprint—one face, one narrative, 24 assets ready for feed dominance.',
-    outcome: 'Winning angles validated. Clear signal on what to scale.',
+    outcome: 'People buy from people. It generates 45% more immediate trust.',
     accent: '#f59e0b',
     assets: 24,
     production: ['1 UGC Talent', '2 videos of 15 seconds', '6 clips of 10 seconds', '3 video formats / 24 total contents'],
@@ -31,12 +47,12 @@ const STRATEGIES: ExecutionStrategy[] = [
   },
   {
     id: 'amplifier',
-    name: 'The Amplifier',
-    strategyHeadline: 'Surround your audience with consistent proof.',
+    name: 'Surround your audience with consistent proof.',
+    strategyHeadline: 'The Amplifier',
     forWho: 'Brands ready to dominate a niche or launch.',
     description:
       'Three UGC talents carry your message so your audience sees multiple faces, one brand. We don’t shoot in the dark—we turn validated hooks into 66 assets that build repeat exposure and trust. Ideal for product launches, category entry, or campaigns where presence matters.',
-    outcome: 'Niche feed dominance. Doubt turned into confidence.',
+    outcome: "We transform 3 signals into 66 echoes. We don't shoot in the dark; we surround your audience with UGC content that turns doubt into absolute confidence.",
     accent: '#10b981',
     assets: 66,
     production: ['3 UGC Talents', '6 videos of 15 seconds', '16 clips of 10 seconds', '3 video formats / 66 total contents'],
@@ -45,12 +61,12 @@ const STRATEGIES: ExecutionStrategy[] = [
   },
   {
     id: 'empire',
-    name: 'Empire Mode',
-    strategyHeadline: 'Own category visibility. Strategic saturation.',
+    name: 'Own category visibility. Strategic saturation.',
+    strategyHeadline: 'Empire Mode',
     forWho: 'Brands that need to own the feed and the conversation.',
     description:
       'Five UGC talents. One hundred twenty assets. If your customer sees you everywhere with different, authentic faces, your brand becomes unquestionable. Designed for market leaders and ambitious brands that want to own their category—not just participate.',
-    outcome: 'Category ownership. Unquestionable brand presence.',
+    outcome: 'Strategic saturation. If your customer sees you everywhere with different faces, your brand becomes unquestionable.',
     accent: '#8b5cf6',
     assets: 120,
     production: ['5 UGC Talents', '10 videos of 15 seconds', '30 clips of 10 seconds', '3 video formats / 120 total contents'],
@@ -59,7 +75,26 @@ const STRATEGIES: ExecutionStrategy[] = [
   },
 ]
 
-function StrategyBlock({ strategy, index }: { strategy: ExecutionStrategy; index: number }) {
+type PackModalVariant = 'glitch' | 'hookHunter' | 'amplifier' | 'empire'
+function getPackVariant(id: string): PackModalVariant {
+  if (id === 'the-glitch') return 'glitch'
+  if (id === 'hook-hunter') return 'hookHunter'
+  if (id === 'amplifier') return 'amplifier'
+  if (id === 'empire') return 'empire'
+  return 'hookHunter'
+}
+
+function StrategyBlock({
+  strategy,
+  index,
+  onRequestPack,
+}: {
+  strategy: ExecutionStrategy
+  index: number
+  onRequestPack: (variant: PackModalVariant) => void
+}) {
+  const ctaLabel = `Scale With ${strategy.strategyHeadline.toUpperCase()}`
+  const variant = getPackVariant(strategy.id)
   return (
     <motion.article
       id={strategy.id}
@@ -99,13 +134,24 @@ function StrategyBlock({ strategy, index }: { strategy: ExecutionStrategy; index
               </p>
               <p className="mt-1 font-semibold text-slate-900">{strategy.outcome}</p>
             </div>
+            <button
+              type="button"
+              onClick={() => onRequestPack(variant)}
+              className="mt-6 inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition-all hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer"
+              style={{
+                backgroundColor: strategy.accent.startsWith('var(') ? 'var(--laneta-blue)' : strategy.accent,
+              }}
+            >
+              {ctaLabel}
+              <HiArrowRight className="size-5" aria-hidden />
+            </button>
           </div>
 
           {/* What this strategy delivers — factual, not “pack” */}
           <div className="shrink-0 lg:w-[320px]">
             <div className="rounded-xl border border-slate-200 bg-slate-50 px-5 py-5">
               <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                What this strategy delivers
+                What this pack includes
               </p>
               <p className="mt-2 text-2xl font-bold text-slate-900 md:text-3xl">
                 {strategy.assets} <span className="text-sm font-medium text-slate-600">assets</span>
@@ -161,6 +207,9 @@ function StrategyBlock({ strategy, index }: { strategy: ExecutionStrategy; index
 }
 
 export function PackIncludesSection() {
+  const { openModal } = useContactModal()
+  const handleRequestPack = (variant: PackModalVariant) => openModal(variant)
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -173,19 +222,24 @@ export function PackIncludesSection() {
           className="mb-4 inline-block rounded-full px-5 py-2 text-sm font-bold uppercase tracking-wider text-amber-700"
           style={{ backgroundColor: 'rgba(251, 191, 36, 0.22)' }}
         >
-          Execution strategies
+          Packs you can buy
         </p>
         <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 md:text-4xl lg:text-5xl">
-          Three strategies. Each with a defined role.
+          Choose the pack that fits your goals.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-slate-700 md:text-xl">
-          Each variant is built around a specific B2B objective—validation, dominance, or category ownership. Choose the strategy that matches where you are.
+          From AI-generated content to creator-led UGC. Each pack has a clear scope, deliverables, and timeline—pick the one that matches what you need.
         </p>
       </div>
 
       <div className="space-y-10 md:space-y-12">
         {STRATEGIES.map((strategy, i) => (
-          <StrategyBlock key={strategy.id} strategy={strategy} index={i} />
+          <StrategyBlock
+            key={strategy.id}
+            strategy={strategy}
+            index={i}
+            onRequestPack={handleRequestPack}
+          />
         ))}
       </div>
     </motion.section>
