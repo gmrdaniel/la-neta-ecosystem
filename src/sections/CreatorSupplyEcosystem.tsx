@@ -315,7 +315,7 @@ export function CreatorSupplyEcosystem() {
               Brands & creators aligned in one place.
             </p>
             <p className="mt-6 text-sm font-bold uppercase tracking-[0.2em] text-[var(--laneta-purple)] md:mt-8">
-              Coming soon — April
+              Coming soon
             </p>
             <a
               href={JOIN_LANDING_URL}
