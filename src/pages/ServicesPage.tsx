@@ -55,9 +55,19 @@ export function ServicesPage() {
 
       <div className="relative z-10">
         <main className="min-h-screen">
-          <div className="mx-auto max-w-6xl space-y-16 px-6 py-24 md:px-8 xl:max-w-7xl">
+          <div
+            id="services-home"
+            className="mx-auto max-w-6xl space-y-16 px-6 py-24 md:px-8 xl:max-w-7xl"
+          >
+
             {/* Decision layer: system overview (1 platform + 4 execution modes) before detail */}
-            <ServicesOverviewSection />
+            <div id="the-ad-factory" className="scroll-mt-24">
+              <ServicesOverviewSection />
+            </div>
+            
+            <div id="problems-vs-solutions" className="scroll-mt-24">
+              <ProblemsVsSolutionsSection /> 
+            </div>
 
             {/* Brands that trust us — 5–6 logos + Discover Our Packages CTA */}
             <TrustedByBrandsSection />
@@ -66,9 +76,6 @@ export function ServicesPage() {
             {/*<div id="service-presentation" className="scroll-mt-24">
               <AdFactoryPresentation />
             </div>*/}
-            <div id="problems-vs-solutions" className="scroll-mt-24">
-              <ProblemsVsSolutionsSection /> 
-            </div>
 
             {/* Bridge: execution modes — intro to The Glitch (light theme) */}
             {/*<motion.section
@@ -168,6 +175,10 @@ export function ServicesPage() {
               </div>
             </motion.section>
             */}
+            <div id="modus-operandi" className="scroll-mt-24">
+              <ModusOperandiSection />
+            </div>
+            
             {/* The Hook Hunter */}
             <div id="the-hook-hunter" className="scroll-mt-24 space-y-16">
               {/*<HookHunterPresentation variant="1" />*/}
@@ -176,9 +187,6 @@ export function ServicesPage() {
               <HookHunterPackIncludes />
             </div>
 
-            <div id="modus-operandi" className="scroll-mt-24">
-              <ModusOperandiSection />
-            </div>
 
             {/* One general roadmap for all services */}
             <div id="roadmap" className="scroll-mt-24">
@@ -186,7 +194,9 @@ export function ServicesPage() {
             </div>
 
             {/* FAQ */}
-            <ServicesFAQSection />
+            <div id="faqs" className="scroll-mt-24">
+              <ServicesFAQSection />
+            </div>
 
             <div id="lets-work-together" className="scroll-mt-24">
               <LetsWorkTogetherSection variant="hookHunter" />

@@ -1,7 +1,8 @@
 import { motion } from 'motion/react'
 
 const SECTION_ID = 'the-ad-factory'
-const AD_FACTORY_SLOGAN = 'You bring the vision. We deliver the execution that scales it globally.'
+const AD_FACTORY_SLOGAN =
+  'You bring the vision. We build the machine that scales it globally.'
 
 /** Config para cada CTA de servicio **/
 type ServiceCTA = {
@@ -23,7 +24,7 @@ const AD_FACTORY_PLATFORM: ServiceCTA = {
   tagline: 'From brief to feed.',
   badge: 'Core System',
   description:
-    'At The Ad Factory, we don\'t just edit videos — we engineer the bridge between user attention and your buy button.\nWe combine the authenticity of UGC, the precision of AI to generate winning creative variations, and high-performance execution.',
+    'We build content that moves brands forward. Faster, simpler, and at scale.\nFrom scroll-stopping ads to high-converting creatives, we combine talent, technology, and strategy to deliver results that actually perform.\nOne machine. Endless output. Global reach.',
   ctaLabel: 'Explore The Ad Factory',
   imageSrc: 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Ad-Factory.jpg',
 }
@@ -70,7 +71,7 @@ function PlatformBlock({ platform, embedded }: { platform: PlatformConfig; embed
         <p className="mb-4 text-slate-600 text-sm leading-relaxed md:mb-6 md:text-base">
           {platform.description}
         </p>
-        <p className="mb-6 text-sm font-medium italic text-[var(--laneta-purple)] md:mb-8 md:text-base">
+        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--laneta-purple)]/60 bg-[var(--laneta-purple)]/10 px-4 py-2 text-xs font-semibold tracking-[0.18em] text-[var(--laneta-purple)] shadow-[0_0_18px_rgba(102,65,237,0.4)] backdrop-blur-sm md:mb-8 md:text-xs md:px-5 md:py-2.5 md:tracking-[0.22em]">
           {AD_FACTORY_SLOGAN}
         </p>
         <a
@@ -128,7 +129,7 @@ function PlatformBlock({ platform, embedded }: { platform: PlatformConfig; embed
               <p key={i}>{line.trim()}</p>
             ))}
           </div>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-xs font-medium italic tracking-wide text-white/85 drop-shadow-[0_1px_6px_rgba(0,0,0,0.4)] sm:mt-6 sm:text-base md:mt-7 md:text-lg">
+          <p className="mx-auto mt-5 max-w-xl rounded-full border border-white/25 bg-white/10 px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.25em] text-white shadow-[0_0_30px_rgba(102,65,237,0.6)] backdrop-blur-md sm:mt-7 sm:px-6 sm:py-3 sm:text-xs md:mt-8 md:text-sm">
             {AD_FACTORY_SLOGAN}
           </p>
           <a

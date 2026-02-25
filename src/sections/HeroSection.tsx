@@ -19,16 +19,16 @@ import { FaPhotoVideo } from 'react-icons/fa'
 import type { IconType } from 'react-icons'
 
 const STATS = [
-  { value: 2, suffix: 'B', label: 'impressions generated', unit: 'billion', icon: MdAddReaction },
-  { value: 1, suffix: 'M', label: 'in revenue', unit: 'million', icon: HiCash },
-  { value: 100, suffix: 'M', label: 'views per year', unit: 'million', icon: ImEye },
-  { value: 2, suffix: 'K+', label: 'Videos produced', unit: 'k', icon: FaPhotoVideo },
+  { value: 2, suffix: 'B', label: 'IMPRESSIONS GENERATED', unit: 'billion', icon: MdAddReaction },
+  { value: 1, suffix: 'M', label: 'IN REVENUE', unit: 'million', icon: HiCash },
+  { value: 100, suffix: 'M', label: 'VIEWS PER YEAR', unit: 'million', icon: ImEye },
+  { value: 2, suffix: 'K+', label: 'VIDEOS PRODUCED', unit: 'k', icon: FaPhotoVideo },
 ] as const
 
 const OFFER_SLIDES = [
   {
     icon: HiLightningBolt,
-    title: 'Strategy & Creative',
+    title: 'STRATEGY & CREATIVE',
     metric: '3x',
     metricLabel: 'higher engagement vs. standard ads',
     impact: 'Campaigns that break through the noise.',
@@ -36,7 +36,7 @@ const OFFER_SLIDES = [
   },
   {
     icon: HiUserGroup,
-    title: 'Top-Tier Talent',
+    title: 'TOP-TIER TALENT',
     metric: '4,000+',
     metricLabel: 'vetted creators in our network',
     impact: 'Real people. Real results. No dead weight.',
@@ -44,7 +44,7 @@ const OFFER_SLIDES = [
   },
   {
     icon: HiClipboardList,
-    title: 'Flawless Ops',
+    title: 'FLAWLESS OPS',
     metric: '21',
     metricLabel: 'days from brief to delivery',
     impact: 'You focus on the vision. We handle the rest.',
@@ -52,7 +52,7 @@ const OFFER_SLIDES = [
   },
   {
     icon: HiFire,
-    title: 'Full-Service Fire',
+    title: 'FULL-SERVICE FIRE',
     metric: '100%',
     metricLabel: 'turnkey production',
     impact: 'From idea to live campaign—we own it.',
@@ -60,7 +60,7 @@ const OFFER_SLIDES = [
   },
   {
     icon: HiChartBar,
-    title: 'Data & Analytics',
+    title: 'DATA & ANALYTICS',
     metric: 'Clear',
     metricLabel: 'reports that show what worked',
     impact: 'Stop guessing. Start optimizing.',
@@ -68,7 +68,7 @@ const OFFER_SLIDES = [
   },
   {
     icon: HiSearchCircle,
-    title: 'Elite Scouting',
+    title: 'ELITE SCOUTING',
     metric: '24/7',
     metricLabel: 'talent discovery & vetting',
     impact: 'We find the creators your competitors haven’t.',
@@ -310,7 +310,7 @@ function OfferCarousel() {
       transition={{ duration: 0.7, delay: 0.5 }}
     >
       <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
-        <h2 className="text-lg font-bold text-white md:text-xl">What we offer</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">WHAT WE OFFER</h2>
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -507,7 +507,7 @@ export function HeroSection() {
         >
           <motion.img
             src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/logo.png"
-            alt="La Neta"
+            alt="LA NETA"
             className="h-10 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:h-12 lg:h-14"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{
@@ -519,7 +519,7 @@ export function HeroSection() {
           />
           <div className="hidden h-8 w-px bg-white/20 md:block" aria-hidden />
           <p className="text-sm font-medium tracking-wide text-white/70 md:text-base">
-            Content & Talent Infrastructure
+            CONTENT & TALENT Infrastructure
           </p>
         </motion.div>
         {/* Labels */}
@@ -642,7 +642,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p className="mt-3 text-base font-medium text-white/70 md:text-lg">
-            500+ power brands · 98% client retention
+            500+ POWER BRANDS · 98% CLIENT RETENTION
           </p>
         </motion.div>
 

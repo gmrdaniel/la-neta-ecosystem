@@ -3,13 +3,16 @@ import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { HiMenu, HiX, HiArrowRight } from 'react-icons/hi'
 
-/** Services page nav: one link per section; each href must match a unique id so only one is active at a time. */
+/** Services page nav: ordered as Home - The Ad Factory - Solutions - How we operate - Packages - Roadmap - FAQs.
+ *  "Home" is rendered separately as a link back to the main homepage.
+ */
 const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#service-presentation', label: 'The Ad Factory' },
-  { href: '#the-glitch', label: 'The Glitch' },
-  { href: '#the-hook-hunter', label: 'The Hook Hunter' },
-  { href: '#amplifier', label: 'The Amplifier' },
-  { href: '#empire', label: 'Empire Mode' },
+  { href: '#the-ad-factory', label: 'The Ad Factory' },
+  { href: '#problems-vs-solutions', label: 'Solutions' },
+  { href: '#modus-operandi', label: 'How we operate' },
+  { href: '#the-hook-hunter', label: 'Packages' },
+  { href: '#roadmap', label: 'Roadmap' },
+  { href: '#faqs', label: 'FAQs' },
 ]
 
 /** Home page: section anchors for scroll spy (pathname === '/'). Only the 3 main sections. Order matches DOM order. */
@@ -52,6 +55,7 @@ export function Header() {
   const pageSectionLinks = isServicesPage ? SERVICES_PAGE_SECTION_LINKS : null
   /** Services page uses light background: header text must be dark when at top. */
   const isLightPageTop = isServicesPage && !isScrolled
+  const headerMaxWidthClass = isServicesPage ? 'max-w-[1440px]' : 'max-w-6xl'
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 48)
@@ -102,7 +106,7 @@ export function Header() {
       }`}
     >
       <div
-          className={`mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 md:px-8 md:pr-8 ${
+          className={`mx-auto flex ${headerMaxWidthClass} items-center justify-between gap-4 px-6 py-4 md:px-8 md:pr-8 ${
             pathname === '/' ? 'pr-10' : 'pr-20'
           }`}
         >
@@ -165,7 +169,9 @@ export function Header() {
               <Link
                 to="/"
                 className={`text-sm font-medium transition-colors ${
-                  isLightPageTop || isScrolled ? 'text-slate-700 hover:text-[var(--laneta-pink)]' : 'text-white/90 hover:text-white'
+                  isLightPageTop || isScrolled
+                    ? 'text-slate-700 hover:text-[var(--laneta-pink)]'
+                    : 'text-white/90 hover:text-white'
                 }`}
               >
                 Home
@@ -179,7 +185,7 @@ export function Header() {
                     onClick={(e) => scrollToSection(e, link.href)}
                     className={`text-sm font-medium transition-colors ${
                       isActive
-                        ? 'font-semibold text-[var(--laneta-pink)]'
+                        ? 'font-semibold text-[var(--laneta-pink)] border-b-2 border-[var(--laneta-pink)] pb-1'
                         : isLightPageTop || isScrolled
                           ? 'text-slate-700 hover:text-[var(--laneta-pink)]'
                           : 'text-white/90 hover:text-white'
@@ -190,6 +196,14 @@ export function Header() {
                   </a>
                 )
               })}
+              <a
+                href="#lets-work-together"
+                onClick={(e) => scrollToSection(e, '#lets-work-together')}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-[var(--laneta-purple)] px-4 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-lg"
+              >
+                Let&apos;s Work Together
+                <HiArrowRight className="size-4" />
+              </a>
             </>
           ) : (
           <>
@@ -270,9 +284,9 @@ export function Header() {
                           closeMobile()
                           setTimeout(() => scrollToSectionById(link.href), 300)
                         }}
-                        className={`rounded-lg px-4 py-3 text-left font-medium hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)] ${
+                        className={`rounded-lg px-4 py-3 text-left font-medium hover:bg-[var(--laneta-pink)]/10 hover:text-[var(--laneta-pink)] ${
                           isActive
-                            ? 'bg-[var(--laneta-purple)]/10 font-semibold text-[var(--laneta-purple)]'
+                            ? 'bg-[var(--laneta-pink)]/10 font-semibold text-[var(--laneta-pink)]'
                             : 'text-slate-800'
                         }`}
                         aria-current={isActive ? 'location' : undefined}
