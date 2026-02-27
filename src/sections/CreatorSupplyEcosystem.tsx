@@ -141,7 +141,7 @@ const CREATOR_PROFILES: CreatorProfile[] = [
 const ELEVN_LOGO = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/elevn.png'
 
 /** CTA "Be one of the first to join" — link to Elevn waitlist landing. */
-const JOIN_LANDING_URL = 'https://elevn-lpfe.vercel.app'
+const JOIN_LANDING_URL = 'https://www.elevn.me/'
 
 const PLATFORM_INSIGHTS = [
   { label: 'Connection with top creators worldwide', short: 'Access a global network of vetted talent across 15+ countries.' },
