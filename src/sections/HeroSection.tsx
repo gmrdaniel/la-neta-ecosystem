@@ -307,7 +307,7 @@ function OfferCarousel() {
       }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.5 }}
+      transition={{ duration: 0.7, delay: 0.9 }}
     >
       <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
         <h2 className="text-lg font-bold text-white md:text-xl">WHAT WE OFFER</h2>
@@ -340,7 +340,7 @@ function OfferCarousel() {
             initial={{ opacity: 0, x: direction * 80 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: direction * -80 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.10, ease: [0.22, 1, 0.36, 1] }}
             className="absolute inset-0 flex flex-col md:flex-row md:items-center gap-6 md:gap-12 px-6 pt-6 pb-4 md:px-10 md:py-10"
           >
             <motion.span
@@ -545,14 +545,14 @@ export function HeroSection() {
             style={{
               filter: 'drop-shadow(0 0 24px rgba(238, 34, 211, 0.46)) drop-shadow(0 2px 12px rgba(23, 103, 207, 0.25))',
             }}
-          >La Neta</span> — Leaders of the digital ecosystem
+          >La Neta</span> <span style={{ fontSize: '0.5em' }}>— Leaders of the digital ecosystem</span>
           </span>
-          <span
+          {/* <span
             className="mt-2 block pb-1 leading-[1.35] text-white/95 text-2xl font-semibold md:text-3xl lg:text-4xl"
             style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))' }}
           >
             Content & talent infrastructure for brands that scale.
-          </span>
+          </span> */}
         </motion.h1>
 
         {/* Slogan */}
@@ -562,12 +562,8 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
         >
-          <p className="mb-2 text-base text-white/80 md:text-lg">
-            We don’t just manage campaigns.
-          </p>
-          <p className="inline-block rounded-xl bg-white/10 px-5 py-2.5 text-xl font-bold tracking-tight text-white shadow-[0_0_30px_rgba(102,65,237,0.3)] ring-1 ring-white/20 backdrop-blur-sm md:text-2xl">
-            We Dominate Feeds.
-          </p>
+
+         
         </motion.div>
 
         {/* Trusted by + CTA */}
@@ -614,7 +610,7 @@ export function HeroSection() {
             }}
             className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-bold text-slate-900 shadow-xl transition hover:bg-white/95 hover:shadow-[0_0_40px_rgba(102,65,237,0.4)] md:px-8 md:py-4 md:text-lg"
           >
-            Get in touch
+            Let's Work Together
             <HiArrowRight className="h-5 w-5 transition group-hover:translate-x-0.5" aria-hidden />
           </a>
         </motion.div>
