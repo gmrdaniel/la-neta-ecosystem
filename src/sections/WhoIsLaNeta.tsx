@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, memo } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import gsap from 'gsap'
 import { HiArrowRight } from 'react-icons/hi'
@@ -113,7 +113,7 @@ function MetricCard({
 // 40% más lento: 28 * 1.4 ≈ 39s
 const CAROUSEL_DURATION = 39
 
-const CarouselCard = memo(function CarouselCard({
+/* const CarouselCard = memo(function CarouselCard({
   src,
   label,
 }: {
@@ -136,15 +136,15 @@ const CarouselCard = memo(function CarouselCard({
       </p>
     </div>
   )
-})
+}) */
 
 function CreatorTypesCarousel() {
   const trackRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [isInView, setIsInView] = useState(false)
   const tweenRef = useRef<gsap.core.Timeline | null>(null)
-  const items = IMAGES.creatorTypes
-  const duplicated = [...items, ...items]
+  // const items = IMAGES.creatorTypes
+  // const duplicated = [...items, ...items]
 
   // Animar solo cuando el carrusel está en vista; al salir de vista se detiene para evitar lag
   useEffect(() => {
