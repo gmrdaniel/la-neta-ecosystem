@@ -307,7 +307,7 @@ function OfferCarousel() {
       }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.9 }}
+      transition={{ duration: 1, delay: 1.1 }}
     >
       <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
         <h2 className="text-lg font-bold text-white md:text-xl">WHAT WE OFFER</h2>
@@ -340,7 +340,7 @@ function OfferCarousel() {
             initial={{ opacity: 0, x: direction * 80 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: direction * -80 }}
-            transition={{ duration: 0.10, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="absolute inset-0 flex flex-col md:flex-row md:items-center gap-6 md:gap-12 px-6 pt-6 pb-4 md:px-10 md:py-10"
           >
             <motion.span

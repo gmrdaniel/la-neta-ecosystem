@@ -107,11 +107,9 @@ export function ServicesOverviewSection() {
         {/* Micro headline — legible on light background, La Neta accent */}
         <div className="text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--laneta-purple)] md:text-sm">
-            The La Neta System
+            La Neta Ecosystem
           </p>
-          <h2 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
-            One platform. Five execution modes.
-          </h2>
+          
         </div>
 
         {/* Platform card — full width, La Neta gradient bar + CTA */}
@@ -194,7 +192,7 @@ export function ServicesOverviewSection() {
         </motion.div>
 
         {/* Execution cards — 2x2 grid, light cards matching background */}
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="hidden">{/* grid gap-6 md:grid-cols-2 */}
           {EXECUTION_SERVICES.map((service, index) => {
             const accent = CARD_ACCENTS[index]
             const isPurple = accent === 'purple'

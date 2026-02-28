@@ -21,8 +21,7 @@ type ServiceCTA = {
 const AD_FACTORY_PLATFORM: ServiceCTA = {
   pageUrl: '/the-ad-factory',
   title: 'The Ad Factory',
-  tagline: 'From brief to feed.',
-  badge: 'Core System',
+  tagline: 'From brief to feed',
   description:
     'We build content that moves brands forward. Faster, simpler, and at scale.\nFrom scroll-stopping ads to high-converting creatives, we combine talent, technology, and strategy to deliver results that actually perform.\nOne machine. Endless output. Global reach.',
   ctaLabel: 'Explore The Ad Factory',
@@ -113,11 +112,11 @@ function PlatformBlock({ platform, embedded }: { platform: PlatformConfig; embed
         <div className="relative flex min-h-[500px] flex-col items-center justify-center overflow-y-auto px-5 py-8 text-center sm:min-h-[520px] sm:px-10 sm:py-12 md:min-h-0 md:max-h-none md:overflow-y-auto md:px-12 md:py-20 lg:px-16 lg:py-24 2xl:overflow-visible">
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 md:gap-3">
             {'badge' in platform && platform.badge && (
-              <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/95 shadow-[0_2px_12px_rgba(0,0,0,0.2)] backdrop-blur-md sm:px-4 sm:py-2 sm:text-xs md:text-sm">
+              <span className="text-sm font-bold tracking-[0.2em] text-white/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)] sm:text-lg md:text-xl">
                 {platform.badge}
               </span>
             )}
-            <span className="inline-flex rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold tracking-wide text-white/90 backdrop-blur-md sm:px-4 sm:py-2 sm:text-base">
+            <span className="text-sm font-semibold tracking-wide text-white/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)] sm:text-lg md:text-xl">
               {platform.tagline}
             </span>
           </div>

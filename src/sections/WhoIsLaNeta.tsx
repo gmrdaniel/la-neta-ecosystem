@@ -193,7 +193,8 @@ function CreatorTypesCarousel() {
     }
   }, [isInView])
 
-  return (
+  return null
+  /* return (
     <motion.div
       ref={containerRef}
       layout={false}
@@ -225,7 +226,7 @@ function CreatorTypesCarousel() {
         </div>
       </div>
     </motion.div>
-  )
+  ) */
 }
 
 function ProcessStepCard({
@@ -343,7 +344,7 @@ export function WhoIsLaNeta() {
               {STORY.paragraphs.map((paragraph, i) => (
                 <motion.p
                   key={i}
-                  className="text-lg leading-relaxed text-slate-700 md:text-xl md:leading-relaxed"
+                  className={`text-lg leading-relaxed text-slate-700 md:text-xl md:leading-relaxed${i === 1 ? ' hidden md:block' : ''}`}
                   initial={{ opacity: 0, y: 14 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -372,7 +373,7 @@ export function WhoIsLaNeta() {
               onClick={() => openModal('global')}
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--laneta-purple)] px-6 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 cursor-pointer"
             >
-              Talk to Our Team
+              Let's Work Together
               <HiArrowRight className="size-5" />
             </button>
           </div>
