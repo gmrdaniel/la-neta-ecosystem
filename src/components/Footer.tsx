@@ -26,14 +26,22 @@ const SOCIAL_LINKS = [
   { href: 'https://www.linkedin.com/showcase/lanetasiempre', icon: SiLinkedin, label: 'LinkedIn' },
 ] as const
 
+const PRESENCE_CITIES = [
+  'New York',
+  'Mexico City',
+  'Bogotá',
+  'Caracas',
+  'Buenos Aires',
+] as const
+
 export function Footer() {
   return (
     <footer className="border-t border-slate-700 bg-[var(--laneta-darker)] text-white">
       <div className="mx-auto max-w-6xl px-6 py-14 md:px-8">
         {/* 4 columnas: Logo, Company, The Ad Factory & Elevn Hub, Legal, Connect */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-12 lg:gap-y-0">
-          {/* Col 1: Logo + nombre + entidad */}
-          <div className="flex flex-col gap-2">
+          {/* Col 1: Logo + nombre + entidad + presencia */}
+          <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <img
                 src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/logo.png"
@@ -45,7 +53,21 @@ export function Footer() {
               />
               <span className="text-sm font-bold text-white">La Neta</span>
             </div>
-            <p className="text-sm text-slate-400">Global Media Review Inc.</p>
+            <div>
+              <p className="text-sm font-medium text-slate-300">Global Media Review Inc.</p>
+              <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Presence
+              </p>
+              <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Office locations">
+                {PRESENCE_CITIES.map((city) => (
+                  <li key={city}>
+                    <span className="inline-block rounded-md border border-slate-600/60 bg-slate-800/50 px-2 py-1 text-xs text-slate-400 backdrop-blur-sm">
+                      {city}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Col 2: Company */}

@@ -8,7 +8,6 @@ import {
   HiFire,
   HiChartBar,
   HiSearchCircle,
-  HiCash,
   HiArrowRight,
 } from 'react-icons/hi'
 import { AD_FACTORY_SLOGAN } from '../constants/copy'
@@ -20,7 +19,6 @@ import type { IconType } from 'react-icons'
 
 const STATS = [
   { value: 2, suffix: 'B', label: 'IMPRESSIONS GENERATED', unit: 'billion', icon: MdAddReaction },
-  { value: 1, suffix: 'M', label: 'IN REVENUE', unit: 'million', icon: HiCash },
   { value: 100, suffix: 'M', label: 'VIEWS PER YEAR', unit: 'million', icon: ImEye },
   { value: 2, suffix: 'K+', label: 'VIDEOS PRODUCED', unit: 'k', icon: FaPhotoVideo },
 ] as const
