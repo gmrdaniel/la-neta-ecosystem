@@ -1,0 +1,130 @@
+{
+  "presentation": {
+    "creativesStory": "Creativos que cuentan una historia",
+    "previousSlide": "Diapositiva anterior",
+    "nextSlide": "Siguiente diapositiva",
+    "goToSlide": "Ir a diapositiva {{number}}",
+    "valueStatement": "Un motor creativo totalmente integrado que combina estrategia, producción, talento y distribución bajo un mismo techo. Del brief al feed, construimos anuncios diseñados para escalar.",
+    "fromScroll": "De",
+    "scroll": "Scroll",
+    "click": "Click",
+    "scrollToClick": "Convertimos el scroll pasivo en acción intencional.",
+    "scrollToClickBody": "Anuncios diseñados para generar credibilidad, crear conexión y convertir la atención en engagement medible.",
+    "scrollQuote": "Tú pones la visión.",
+    "scrollQuoteAccent": "Nosotros la convertimos en impacto creativo global.",
+    "features": {
+      "distinct": { "title": "Creatividad única", "description": "Visuales que rompen el ruido." },
+      "detail": { "title": "Obsesión por el detalle", "description": "Cada frame intencionalmente diseñado." },
+      "trend": { "title": "Conscientes de tendencias", "description": "Actual sin volverse obsoleto." }
+    },
+    "capabilities": ["Estrategia creativa y de medios", "Producción in-house", "Talento curado", "Distribución en redes sociales pagas", "Testing sistemático", "Escalabilidad"],
+    "scores": { "popularity": "Popularidad", "impressions": "Impresiones", "trend": "Tendencia" },
+    "ads": {
+      "nyx": { "caption": "Rendimiento que convierte", "story": "Convertimos un lanzamiento de producto en un momento narrativo. El creativo lidera con tensión—un primer plano, una pausa—antes de revelar el resultado. Hecho para detener el scroll y generar visualizaciones repetidas.", "format": "Estático · Feed" },
+      "amd": { "caption": "Alcance que escala", "story": "Tecnología que habla a creadores, no solo especificaciones. Cambiamos el enfoque de producto primero a estilo de vida primero—mostrando lo que se vuelve posible, no solo lo que hay dentro de la caja. Creativo centrado en la audiencia que escaló en múltiples mercados.", "format": "Video · Multiplataforma" },
+      "pinterest": { "caption": "Calidad que eleva", "story": "Creativo de descubrimiento para una plataforma de descubrimiento. Conectamos intención con inspiración—visuales limpios y aspiracionales que se sienten nativos del feed mientras generan acción clara. Cada frame optimizado tanto para brand lift como para conversión.", "format": "Estático · Pinterest" }
+    }
+  },
+  "problems": {
+    "frictionBadge": "6 puntos de fricción · 6 formas en que los resolvemos",
+    "sectionTitle": "Elimina la Fricción, Amplifica la Producción",
+    "subtitle": "Deja de luchar con los anuncios. Empieza a escalarlos.",
+    "subtitleDetail": "Cada cuello de botella que sientes—construimos The Ad Factory para eliminarlo.",
+    "items": [
+      { "problem": "No tienes anuncios", "solution": "Producimos anuncios para ti", "tagline": "Del brief al feed—nosotros manejamos todo el pipeline." },
+      { "problem": "Producir anuncios consume demasiado tiempo", "solution": "Lo hacemos en tiempo récord", "tagline": "Entrega rápida sin el ir y venir." },
+      { "problem": "No tienes creadores de contenido", "solution": "Tenemos una red de 4,000+ creadores", "tagline": "Talento curado, listo para rendir por tu marca." },
+      { "problem": "No tienes equipo especializado", "solution": "Adaptamos contenido para cada red", "tagline": "Un activo, todos los formatos. Nativo para cada plataforma." },
+      { "problem": "Necesitas variedad de anuncios", "solution": "Creamos variedad de anuncios que atraen compradores", "tagline": "Volumen + variación. Prueba más, escala lo que funciona." },
+      { "problem": "No puedes captar la atención de la audiencia", "solution": "Diseñamos para captar atención—hooks que convierten", "tagline": "Creativo basado en datos. Sabemos qué detiene el scroll." }
+    ],
+    "closingTitle": "Un solo socio. Pipeline completo. Sin más conjeturas.",
+    "closingBody": "The Ad Factory convierte el caos creativo en anuncios que escalan.",
+    "closingCta": "Ayúdame a Elegir un Paquete"
+  },
+  "modusOperandi": {
+    "badge": "Cómo operamos",
+    "sectionTitle": "El motor detrás de The Ad Factory",
+    "subtitle": "Tres engranajes que funcionan en sincronía. Crear. Editar. Escalar.",
+    "steps": [
+      { "title": "Creamos anuncios", "description": "Estrategia, talento y producción bajo un mismo techo. De tu brief a contenido listo para anunciar—nosotros manejamos el pipeline creativo desde el día uno." },
+      { "title": "Editamos los resultados", "description": "Cada frame está diseñado para impactar. Cortamos, marcamos ritmo y optimizamos para la plataforma—así lo que recibes está listo para rendir, no solo para entregar." },
+      { "title": "Generamos variaciones con IA", "description": "Escala lo que funciona. Convertimos creativos ganadores en múltiples ángulos, formatos y hooks—para que pruebes más y escales más rápido sin empezar de cero." }
+    ],
+    "closingLine": "Mismo pipeline. Sin traspasos.",
+    "closingAccent": "Del brief al feed."
+  },
+  "roadmap": {
+    "badge": "4 fases · 21 días",
+    "sectionTitle": "Roadmap de 21 días",
+    "subtitle": "Tú apruebas el brief; nosotros nos encargamos del resto. 0% dolor de cabeza operativo para tu equipo.",
+    "phases": [
+      { "dayRange": "Día 1–3", "title": "Kickoff y Brief", "description": "Alineamos objetivos, mensajes y dirección creativa.", "detail": "Un kickoff, un brief. Tú apruebas; nosotros avanzamos." },
+      { "dayRange": "Día 4–8", "title": "Talento y Guiones", "description": "Seleccionamos los creadores correctos y desarrollamos guiones de alta conversión.", "detail": "Talento pre-verificado y copy optimizado para tus KPIs." },
+      { "dayRange": "Día 9–16", "title": "Producción", "description": "Producimos y editamos contenido orientado al rendimiento.", "detail": "Producción in-house. Cada formato, cada corte." },
+      { "dayRange": "Día 17–21", "title": "Revisión y Entrega Final", "description": "Tú das feedback, nosotros refinamos y entregamos anuncios listos para publicar en todos los formatos requeridos.", "detail": "Feedback estructurado, iteraciones rápidas. Luego un paquete: 9:16, 1:1, 16:9." }
+    ],
+    "closingTitle": "Simple. Estructurado. Hecho para velocidad.",
+    "closingBody": "Día 1: tu brief. Día 21: anuncios que rinden. Un roadmap, sin sorpresas."
+  },
+  "letsWorkTogether": {
+    "sectionTitle": "Trabajemos Juntos",
+    "talkToUs": "Habla con nosotros",
+    "letsTalk": "Hablemos",
+    "close": "Cerrar",
+    "thankYou": "Gracias.",
+    "thankYouBody": "Hemos recibido tu mensaje y te responderemos con los próximos pasos lo antes posible.",
+    "fullName": "Nombre completo",
+    "namePlaceholder": "Juan Pérez",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "juan.perez@ejemplo.com",
+    "companyLabel": "Empresa o proyecto",
+    "companyPlaceholder": "Tu marca o empresa",
+    "serviceLabel": "¿Qué servicio o tema te gustaría discutir?",
+    "choose": "Elegir",
+    "subjectLabel": "Asunto (título breve de tu proyecto o idea)",
+    "subjectPlaceholder": "ej. Consulta de campaña, The Glitch, alianza",
+    "messageLabel": "Mensaje: cuéntanos qué necesitas (objetivos, plazos, formatos o cualquier detalle relevante)",
+    "urgencyLabel": "¿Qué tan urgente es tu necesidad de respuesta?",
+    "urgency": {
+      "1": "Solo explorando",
+      "2": "No urgente (próximo trimestre)",
+      "3": "Necesidad moderada (este mes)",
+      "4": "Urgente (esta semana)",
+      "5": "Lo necesitamos lo antes posible"
+    },
+    "sending": "Enviando…",
+    "sendMessage": "Enviar mensaje",
+    "serviceTopics": [
+      "The Ad Factory (Publicidad / campañas de influencers)",
+      "The Glitch (Estrategia de contenido / medios)",
+      "The Hook Hunter (Identificación de oportunidades / tendencias)",
+      "The Amplifier (Rodear a la audiencia con prueba consistente)",
+      "Empire Mode (Visibilidad de categoría / saturación estratégica)",
+      "Partnership / colaboración general",
+      "Otro tema"
+    ],
+    "copy": {
+      "global": {
+        "intro": "¿Tienes una visión que te gustaría hacer realidad? Hablemos.",
+        "body": "Ya sea que necesites anuncios UGC, contenido con IA, hooks de alto rendimiento o un pipeline creativo completo—estamos aquí para ayudar a tu marca a escalar. Comparte tus objetivos, plazos o una idea general. Te conectaremos con la solución correcta y te responderemos con los próximos pasos.",
+        "messagePlaceholder": "Cuéntanos sobre tu marca y lo que buscas. Objetivos de campaña, formatos preferidos, plazos—lo que nos ayude a empezar."
+      },
+      "adFactory": {
+        "intro": "¿Tienes una idea que te gustaría hacer realidad? No pierdas tiempo y habla con nosotros.",
+        "body": "Ya sea que necesites anuncios que conviertan, creativos que destaquen o un pipeline completo del brief al feed—estamos aquí para convertir tu visión en realidad. Comparte tus objetivos, plazos o un concepto aproximado. Te responderemos con los próximos pasos.",
+        "messagePlaceholder": "¿Qué quieres hacer realidad? Objetivos de campaña, formatos, plazos—comparte lo que nos ayude a empezar."
+      },
+      "glitch": {
+        "intro": "¿Listo para amplificar tu marca con contenido generado por IA? Hablemos de The Glitch.",
+        "body": "Ya sea que necesites avatares de IA para tu marca, un paquete de 24 activos o un roadmap completo de 21 días desde el inicio hasta la entrega—estamos aquí para hacerlo realidad. Comparte tus objetivos de campaña y plazos. Te responderemos con los próximos pasos.",
+        "messagePlaceholder": "Cuéntanos sobre tu marca y objetivos de campaña. ¿Interesado en The Glitch? Comparte tu timeline y te contactaremos."
+      },
+      "hookHunter": {
+        "intro": "¿Listo para hooks que convierten? Hablemos de The Hook Hunter, The Amplifier o Empire Mode.",
+        "body": "Ya sea que quieras validar hooks ganadores con 1 talento (The Hook Hunter), dominar tu feed con 3 (The Amplifier) u ocupar tu categoría con 5 (Empire Mode)—estamos aquí para convertir tu visión en contenido UGC que rinde. Comparte tus objetivos, plazos o preferencia de paquete. Te responderemos con los próximos pasos.",
+        "messagePlaceholder": "¿Qué paquete te interesa—Hunter, Amplifier o Empire? Comparte tus objetivos de campaña, plazos y te contactaremos."
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@ import { TbHandClick } from 'react-icons/tb'
 import type { IconType } from 'react-icons'
 import Rating from '@mui/material/Rating'
 import { HiCheckCircle } from 'react-icons/hi'
+import { useTranslation } from 'react-i18next'
 
 const SECTION_ID = 'elevn'
 
@@ -139,20 +140,13 @@ const CREATOR_PROFILES: CreatorProfile[] = [
 ]
 
 const ELEVN_LOGO = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/elevn.png'
-
-/** CTA "Be one of the first to join" — link to Elevn waitlist landing. */
 const JOIN_LANDING_URL = 'https://www.elevn.me/'
 
-const PLATFORM_INSIGHTS = [
-  { label: 'Connection with top creators worldwide', short: 'Access a global network of vetted talent across 15+ countries.' },
-  { label: 'Weekly campaign management', short: 'Run recurring campaigns with clear briefs, deadlines, and deliverables.' },
-  { label: 'On-time payments and clear terms', short: 'Transparent contracts and reliable payouts for creators and brands.' },
-  { label: 'Full traceability and reporting', short: 'Track every asset, approval, and performance metric in one place.' },
-  { label: 'Campaign performance insights', short: 'Dashboards and reports that show what works and what to scale.' },
-  { label: 'Curated creators by niche and fit', short: 'Talent selected for quality and brand alignment—long-term fit, not just availability.' },
-]
+const INSIGHT_KEYS = ['connection', 'campaign', 'payments', 'traceability', 'performance', 'curated'] as const
 
 function CreatorProfileCard({ creator, index }: { creator: CreatorProfile; index: number }) {
+  const { t } = useTranslation('elevn')
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -202,7 +196,7 @@ function CreatorProfileCard({ creator, index }: { creator: CreatorProfile; index
         </div>
 
         <div className="mt-2 flex flex-wrap items-center gap-1.5">
-          <span className="text-sm font-medium text-[var(--laneta-blue)]">Brands:</span>
+          <span className="text-sm font-medium text-[var(--laneta-blue)]">{t('stats.brands')}</span>
           {creator.brands.map((b, i) =>
             b.type === 'icon' ? (
               <div
@@ -237,32 +231,32 @@ function CreatorProfileCard({ creator, index }: { creator: CreatorProfile; index
         <div className="mt-2 grid grid-cols-2 gap-1.5 text-base">
           <div className="flex items-center gap-2 rounded-md bg-slate-50 px-2 py-1.5">
             <HiSpeakerphone className="size-4 shrink-0 text-slate-500" aria-hidden />
-            <span><span className="font-bold text-slate-800">{creator.stats.ads}</span><span className="ml-0.5 text-slate-500">ads</span></span>
+            <span><span className="font-bold text-slate-800">{creator.stats.ads}</span><span className="ml-0.5 text-slate-500">{t('stats.ads')}</span></span>
           </div>
           <div className="flex items-center gap-2 rounded-md bg-slate-50 px-2 py-1.5">
             <FaPhotoVideo className="size-4 shrink-0 text-slate-500" aria-hidden />
-            <span><span className="font-bold text-slate-800">{creator.stats.videos}</span><span className="ml-0.5 text-slate-500">videos</span></span>
+            <span><span className="font-bold text-slate-800">{creator.stats.videos}</span><span className="ml-0.5 text-slate-500">{t('stats.videos')}</span></span>
           </div>
           <div className="flex items-center gap-2 rounded-md bg-slate-50 px-2 py-1.5">
             <HiSwitchVertical className="size-4 shrink-0 text-slate-500" aria-hidden />
-            <span><span className="font-bold text-slate-800">{creator.stats.engagement}</span><span className="ml-0.5 text-slate-500">eng</span></span>
+            <span><span className="font-bold text-slate-800">{creator.stats.engagement}</span><span className="ml-0.5 text-slate-500">{t('stats.engagement')}</span></span>
           </div>
           <div className="flex items-center gap-2 rounded-md bg-slate-50 px-2 py-1.5">
             <HiThumbUp className="size-4 shrink-0 text-slate-500" aria-hidden />
-            <span><span className="font-bold text-slate-800">{creator.stats.likes}</span><span className="ml-0.5 text-slate-500">likes</span></span>
+            <span><span className="font-bold text-slate-800">{creator.stats.likes}</span><span className="ml-0.5 text-slate-500">{t('stats.likes')}</span></span>
           </div>
           <div className="flex items-center gap-2 rounded-md bg-slate-50 px-2 py-1.5">
             <HiUserGroup className="size-4 shrink-0 text-slate-500" aria-hidden />
-            <span><span className="font-bold text-slate-800">{creator.stats.followers}</span><span className="ml-0.5 text-slate-500">followers</span></span>
+            <span><span className="font-bold text-slate-800">{creator.stats.followers}</span><span className="ml-0.5 text-slate-500">{t('stats.followers')}</span></span>
           </div>
           <div className="flex items-center gap-2 rounded-md bg-slate-50 px-2 py-1.5">
             <TbHandClick className="size-4 shrink-0 text-slate-500" aria-hidden />
-            <span><span className="font-bold text-slate-800">{creator.stats.ctr}</span><span className="ml-0.5 text-slate-500">CTR (%)</span></span>
+            <span><span className="font-bold text-slate-800">{creator.stats.ctr}</span><span className="ml-0.5 text-slate-500">{t('stats.ctr')}</span></span>
           </div>
         </div>
 
         <div className="mt-2 flex flex-wrap items-center gap-1.5 border-t border-slate-100 pt-2">
-          <span className="text-sm font-medium text-slate-500">Present on:</span>
+          <span className="text-sm font-medium text-slate-500">{t('stats.presentOn')}</span>
           {creator.socials.map((s) => {
             const Icon = s.icon
             return (
@@ -283,13 +277,15 @@ function CreatorProfileCard({ creator, index }: { creator: CreatorProfile; index
 }
 
 export function CreatorSupplyEcosystem() {
+  const { t } = useTranslation('elevn')
+
   return (
     <section
       id={SECTION_ID}
       className="relative -mt-px overflow-hidden bg-slate-50 py-20 md:py-28"
     >
       <div className="mx-auto max-w-[1680px] px-6 md:px-8">
-        {/* Hero block: logo and taglines, no background */}
+        {/* Hero block */}
         <motion.div
           className="relative mb-3 md:mb-5"
           initial={{ opacity: 0, y: 24 }}
@@ -299,7 +295,7 @@ export function CreatorSupplyEcosystem() {
         >
           <div className="flex flex-col items-center justify-center px-4 py-10 text-center md:py-14">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--laneta-blue)] md:text-sm">
-              Influencer campaign management
+              {t('influencerCampaign')}
             </p>
             <div className="mb-6 flex justify-center drop-shadow-sm">
               <img
@@ -312,10 +308,10 @@ export function CreatorSupplyEcosystem() {
             </div>
             <h2 className="sr-only">Elevn</h2>
             <p className="mx-auto mt-3 max-w-lg text-base text-slate-600">
-              Brands & creators aligned in one place.
+              {t('tagline')}
             </p>
             <p className="mt-6 text-sm font-bold uppercase tracking-[0.2em] text-[var(--laneta-purple)] md:mt-8">
-              Coming soon
+              {t('comingSoon')}
             </p>
             <a
               href={JOIN_LANDING_URL}
@@ -323,12 +319,12 @@ export function CreatorSupplyEcosystem() {
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center justify-center rounded-xl bg-[var(--laneta-purple)] px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 md:mt-5"
             >
-              Be one of the first to join
+              {t('joinCta')}
             </a>
           </div>
         </motion.div>
 
-        {/* What is Elevn + Why Elevn: single block, one motion.div */}
+        {/* What is Elevn + Why Elevn */}
         <motion.div
           className="mb-16 md:mb-20"
           initial={{ opacity: 0, y: 16 }}
@@ -356,19 +352,19 @@ export function CreatorSupplyEcosystem() {
               </p>
 
               <p className="mt-10 mb-6 text-center text-sm font-semibold uppercase tracking-wider text-[var(--laneta-purple)] md:mt-12 md:mb-8">
-                Why Elevn
+                {t('whyElevn')}
               </p>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {PLATFORM_INSIGHTS.map((item) => (
+                {INSIGHT_KEYS.map((key) => (
                   <div
-                    key={item.label}
+                    key={key}
                     className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50/80 px-5 py-4 shadow-sm"
                   >
                     <HiCheckCircle className="mt-0.5 size-6 shrink-0 text-[var(--laneta-purple)]" aria-hidden />
                     <div>
-                      <p className="font-semibold text-slate-800">{item.label}</p>
-                      <p className="mt-1 text-sm leading-relaxed text-slate-600">{item.short}</p>
+                      <p className="font-semibold text-slate-800">{t(`insights.${key}.label`)}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-600">{t(`insights.${key}.short`)}</p>
                     </div>
                   </div>
                 ))}
@@ -386,7 +382,7 @@ export function CreatorSupplyEcosystem() {
         >
           <div className="mb-10 text-center">
             <p className="mb-3 text-sm font-medium tracking-[0.2em] uppercase text-[var(--laneta-purple)]">
-              Creator Supply on Elevn
+              {t('creatorSupply')}
             </p>
             <h3 className="text-2xl font-extrabold tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
               <span className="text-[var(--laneta-pink)]">4,000+</span> vetted creators <span className="text-[var(--laneta-blue)]">curated for your campaigns</span>

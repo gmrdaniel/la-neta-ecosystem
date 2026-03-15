@@ -1,0 +1,28 @@
+{
+  "influencerCampaign": "Influencer campaign management",
+  "tagline": "Brands & creators aligned in one place.",
+  "comingSoon": "Coming soon",
+  "joinCta": "Be one of the first to join",
+  "whatIsElevn": "Elevn is <purple>a curated space</purple> where our creators find opportunities across fashion, food, tech, lifestyle, travel, and more. Every creator is here because they believe in the work—quality and brand fit come first. Brands get direct access to talent they can trust; long-term relationships, clear briefs, rights, and performance insights—all in <blue>one place</blue>.",
+  "whyElevn": "Why Elevn",
+  "insights": {
+    "connection": { "label": "Connection with top creators worldwide", "short": "Access a global network of vetted talent across 15+ countries." },
+    "campaign": { "label": "Weekly campaign management", "short": "Run recurring campaigns with clear briefs, deadlines, and deliverables." },
+    "payments": { "label": "On-time payments and clear terms", "short": "Transparent contracts and reliable payouts for creators and brands." },
+    "traceability": { "label": "Full traceability and reporting", "short": "Track every asset, approval, and performance metric in one place." },
+    "performance": { "label": "Campaign performance insights", "short": "Dashboards and reports that show what works and what to scale." },
+    "curated": { "label": "Curated creators by niche and fit", "short": "Talent selected for quality and brand alignment—long-term fit, not just availability." }
+  },
+  "creatorSupply": "Creator Supply on Elevn",
+  "vettedCreators": "<pink>4,000+</pink> vetted creators <blue>curated for your campaigns</blue>",
+  "stats": {
+    "ads": "ads",
+    "videos": "videos",
+    "engagement": "eng",
+    "likes": "likes",
+    "followers": "followers",
+    "ctr": "CTR (%)",
+    "presentOn": "Present on:",
+    "brands": "Brands:"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "contentTalent": "CONTENT & TALENT Infrastructure",
+  "forBrands": "For brands · Global · Digital · Creators",
+  "tagline": "Leaders of the digital ecosystem",
+  "trustedBy": "Trusted by & official partners",
+  "letsWorkTogether": "Let's Work Together",
+  "stats": {
+    "impressions": "IMPRESSIONS GENERATED",
+    "views": "VIEWS PER YEAR",
+    "videos": "VIDEOS PRODUCED"
+  },
+  "positioning": "500+ POWER BRANDS · 98% CLIENT RETENTION",
+  "whatWeOffer": "WHAT WE OFFER",
+  "previousService": "Previous service",
+  "nextService": "Next service",
+  "goToSlide": "Go to slide {{number}}",
+  "slides": {
+    "strategyCreative": {
+      "title": "STRATEGY & CREATIVE",
+      "metric": "3x",
+      "metricLabel": "higher engagement vs. standard ads",
+      "impact": "Campaigns that break through the noise.",
+      "copy": "High-impact concepts designed to go viral. We don't follow trends—we set them. From insight to execution, every idea is built to dominate feeds and convert."
+    },
+    "topTierTalent": {
+      "title": "TOP-TIER TALENT",
+      "metric": "4,000+",
+      "metricLabel": "vetted creators in our network",
+      "impact": "Real people. Real results. No dead weight.",
+      "copy": "We handpick creators who actually move the needle. Access to the best talent across niches and regions. Your brand in the right hands, every time."
+    },
+    "flawlessOps": {
+      "title": "FLAWLESS OPS",
+      "metric": "21",
+      "metricLabel": "days from brief to delivery",
+      "impact": "You focus on the vision. We handle the rest.",
+      "copy": "Contracts, invoices, rights, and logistics—all managed. One point of contact, clear timelines, zero surprises. Scale without the operational headache."
+    },
+    "fullServiceFire": {
+      "title": "FULL-SERVICE FIRE",
+      "metric": "100%",
+      "metricLabel": "turnkey production",
+      "impact": "From idea to live campaign—we own it."
+    },
+    "dataAnalytics": {
+      "title": "DATA & ANALYTICS",
+      "metric": "Clear",
+      "metricLabel": "reports that show what worked",
+      "impact": "Stop guessing. Start optimizing.",
+      "copy": "Performance dashboards that tell you exactly what drove results. Attribution, benchmarks, and actionable insights so every dollar works harder."
+    },
+    "eliteScouting": {
+      "title": "ELITE SCOUTING",
+      "metric": "24/7",
+      "metricLabel": "talent discovery & vetting",
+      "impact": "We find the creators your competitors haven't.",
+      "copy": "Our team constantly discovers and vets new talent. First access to rising stars and niche experts. The right face for your brand, before everyone else."
+    }
+  }
+}

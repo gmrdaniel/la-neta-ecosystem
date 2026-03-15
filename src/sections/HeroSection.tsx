@@ -10,72 +10,14 @@ import {
   HiSearchCircle,
   HiArrowRight,
 } from 'react-icons/hi'
-import { AD_FACTORY_SLOGAN } from '../constants/copy'
 import { SiMeta, SiPinterest } from 'react-icons/si'
 import { MdAddReaction } from 'react-icons/md'
 import { ImEye } from 'react-icons/im'
 import { FaPhotoVideo } from 'react-icons/fa'
 import type { IconType } from 'react-icons'
-
-const STATS = [
-  { value: 2, suffix: 'B', label: 'IMPRESSIONS GENERATED', unit: 'billion', icon: MdAddReaction },
-  { value: 100, suffix: 'M', label: 'VIEWS PER YEAR', unit: 'million', icon: ImEye },
-  { value: 2, suffix: 'K+', label: 'VIDEOS PRODUCED', unit: 'k', icon: FaPhotoVideo },
-] as const
-
-const OFFER_SLIDES = [
-  {
-    icon: HiLightningBolt,
-    title: 'STRATEGY & CREATIVE',
-    metric: '3x',
-    metricLabel: 'higher engagement vs. standard ads',
-    impact: 'Campaigns that break through the noise.',
-    copy: 'High-impact concepts designed to go viral. We don’t follow trends—we set them. From insight to execution, every idea is built to dominate feeds and convert.',
-  },
-  {
-    icon: HiUserGroup,
-    title: 'TOP-TIER TALENT',
-    metric: '4,000+',
-    metricLabel: 'vetted creators in our network',
-    impact: 'Real people. Real results. No dead weight.',
-    copy: 'We handpick creators who actually move the needle. Access to the best talent across niches and regions. Your brand in the right hands, every time.',
-  },
-  {
-    icon: HiClipboardList,
-    title: 'FLAWLESS OPS',
-    metric: '21',
-    metricLabel: 'days from brief to delivery',
-    impact: 'You focus on the vision. We handle the rest.',
-    copy: 'Contracts, invoices, rights, and logistics—all managed. One point of contact, clear timelines, zero surprises. Scale without the operational headache.',
-  },
-  {
-    icon: HiFire,
-    title: 'FULL-SERVICE FIRE',
-    metric: '100%',
-    metricLabel: 'turnkey production',
-    impact: 'From idea to live campaign—we own it.',
-    copy: AD_FACTORY_SLOGAN,
-  },
-  {
-    icon: HiChartBar,
-    title: 'DATA & ANALYTICS',
-    metric: 'Clear',
-    metricLabel: 'reports that show what worked',
-    impact: 'Stop guessing. Start optimizing.',
-    copy: 'Performance dashboards that tell you exactly what drove results. Attribution, benchmarks, and actionable insights so every dollar works harder.',
-  },
-  {
-    icon: HiSearchCircle,
-    title: 'ELITE SCOUTING',
-    metric: '24/7',
-    metricLabel: 'talent discovery & vetting',
-    impact: 'We find the creators your competitors haven’t.',
-    copy: 'Our team constantly discovers and vets new talent. First access to rising stars and niche experts. The right face for your brand, before everyone else.',
-  },
-]
+import { useTranslation } from 'react-i18next'
 
 const OFFER_AUTO_ADVANCE_MS = 5500
-
 const VIDEO_PLAYBACK_RATE = 0.55
 
 /** Convierte value + unit al número objetivo (ej. 2 + 'billion' → 2e9). */
@@ -248,13 +190,32 @@ function StatCard({
 
 const HERO_VIDEO_SRC = '/assets/videos/presence_on_the_net.mp4'
 
+const SLIDE_KEYS = [
+  'strategyCreative',
+  'topTierTalent',
+  'flawlessOps',
+  'fullServiceFire',
+  'dataAnalytics',
+  'eliteScouting',
+] as const
+
+const SLIDE_ICONS = [
+  HiLightningBolt,
+  HiUserGroup,
+  HiClipboardList,
+  HiFire,
+  HiChartBar,
+  HiSearchCircle,
+]
+
 function OfferCarousel() {
+  const { t } = useTranslation('hero')
   const [index, setIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [progress, setProgress] = useState(0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const startTimeRef = useRef<number>(Date.now())
-  const total = OFFER_SLIDES.length
+  const total = SLIDE_KEYS.length
 
   const goTo = (next: number, dir: number) => {
     setDirection(dir)
@@ -294,7 +255,9 @@ function OfferCarousel() {
     return () => clearInterval(t)
   }, [])
 
-  const slide = OFFER_SLIDES[index]
+  const slideKey = SLIDE_KEYS[index]
+  const SlideIcon = SLIDE_ICONS[index]
+  const sloganText = t('common:slogan')
 
   return (
     <motion.div
@@ -308,13 +271,13 @@ function OfferCarousel() {
       transition={{ duration: 1, delay: 1.1 }}
     >
       <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
-        <h2 className="text-lg font-bold text-white md:text-xl">WHAT WE OFFER</h2>
+        <h2 className="text-lg font-bold text-white md:text-xl">{t('whatWeOffer')}</h2>
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={() => goTo(index - 1, -1)}
             className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white transition hover:bg-white/20"
-            aria-label="Previous service"
+            aria-label={t('previousService')}
           >
             <span className="text-lg">←</span>
           </button>
@@ -325,7 +288,7 @@ function OfferCarousel() {
             type="button"
             onClick={() => goTo(index + 1, 1)}
             className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white transition hover:bg-white/20"
-            aria-label="Next service"
+            aria-label={t('nextService')}
           >
             <span className="text-lg">→</span>
           </button>
@@ -351,7 +314,7 @@ function OfferCarousel() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.15, duration: 0.35 }}
             >
-              <slide.icon />
+              <SlideIcon />
             </motion.span>
             <div className="flex-1 min-w-0">
               <motion.h3
@@ -360,7 +323,7 @@ function OfferCarousel() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
-                {slide.title}
+                {t(`slides.${slideKey}.title`)}
               </motion.h3>
               <motion.div
                 className="flex flex-wrap items-baseline gap-3 mb-4"
@@ -369,9 +332,9 @@ function OfferCarousel() {
                 transition={{ delay: 0.2 }}
               >
                 <span className="font-mono text-4xl font-bold text-[var(--laneta-pink)] md:text-5xl">
-                  {slide.metric}
+                  {t(`slides.${slideKey}.metric`)}
                 </span>
-                <span className="text-base text-white/80 md:text-lg">{slide.metricLabel}</span>
+                <span className="text-base text-white/80 md:text-lg">{t(`slides.${slideKey}.metricLabel`)}</span>
               </motion.div>
               <motion.p
                 className="text-base font-semibold text-white/95 mb-4 md:text-lg"
@@ -379,7 +342,7 @@ function OfferCarousel() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.25 }}
               >
-                {slide.impact}
+                {t(`slides.${slideKey}.impact`)}
               </motion.p>
               <motion.p
                 className="text-base text-white/75 leading-relaxed max-w-2xl md:text-lg"
@@ -387,7 +350,7 @@ function OfferCarousel() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                {slide.copy}
+                {slideKey === 'fullServiceFire' ? sloganText : t(`slides.${slideKey}.copy`)}
               </motion.p>
             </div>
           </motion.div>
@@ -407,7 +370,7 @@ function OfferCarousel() {
           />
         </div>
         <div className="flex shrink-0 gap-1.5">
-          {OFFER_SLIDES.map((_, i) => (
+          {SLIDE_KEYS.map((_, i) => (
             <button
               key={i}
               type="button"
@@ -415,7 +378,7 @@ function OfferCarousel() {
               className={`h-2 rounded-full transition-all ${
                 i === index ? 'w-6 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
               }`}
-              aria-label={`Go to slide ${i + 1}`}
+              aria-label={t('goToSlide', { number: i + 1 })}
             />
           ))}
         </div>
@@ -425,9 +388,16 @@ function OfferCarousel() {
 }
 
 export function HeroSection() {
+  const { t } = useTranslation('hero')
   const sectionRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [heroInView, setHeroInView] = useState(true)
+
+  const STATS = [
+    { value: 2, suffix: 'B', label: t('stats.impressions'), unit: 'billion', icon: MdAddReaction },
+    { value: 100, suffix: 'M', label: t('stats.views'), unit: 'million', icon: ImEye },
+    { value: 2, suffix: 'K+', label: t('stats.videos'), unit: 'k', icon: FaPhotoVideo },
+  ]
 
   useEffect(() => {
     const section = sectionRef.current
@@ -467,7 +437,7 @@ export function HeroSection() {
       className="relative min-h-screen overflow-hidden"
       style={{ perspective: '1000px' }}
     >
-      {/* Background video: solo se reproduce cuando el hero está en vista */}
+      {/* Background video */}
       <div className="absolute inset-0">
         <video
           ref={setVideoRef}
@@ -485,7 +455,6 @@ export function HeroSection() {
           className="h-full w-full object-cover"
           aria-hidden
         />
-        {/* Overlay */}
         <div
           className="absolute inset-0"
           style={{
@@ -496,7 +465,7 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-24 pb-20 md:pt-32 md:pb-28">
-        {/* Brand anchor: ancla institucional (marca = estabilidad, animación mínima) */}
+        {/* Brand anchor */}
         <motion.div
           className="mb-6 flex items-center gap-4"
           initial={{ opacity: 0 }}
@@ -517,7 +486,7 @@ export function HeroSection() {
           />
           <div className="hidden h-8 w-px bg-white/20 md:block" aria-hidden />
           <p className="text-sm font-medium tracking-wide text-white/70 md:text-base">
-            CONTENT & TALENT Infrastructure
+            {t('contentTalent')}
           </p>
         </motion.div>
         {/* Labels */}
@@ -527,7 +496,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          For brands · Global · Digital · Creators
+          {t('forBrands')}
         </motion.p>
 
         {/* Title */}
@@ -543,14 +512,8 @@ export function HeroSection() {
             style={{
               filter: 'drop-shadow(0 0 24px rgba(238, 34, 211, 0.46)) drop-shadow(0 2px 12px rgba(23, 103, 207, 0.25))',
             }}
-          >La Neta</span> <span style={{ fontSize: '0.5em' }}>— Leaders of the digital ecosystem</span>
+          >La Neta</span> <span style={{ fontSize: '0.5em' }}>— {t('tagline')}</span>
           </span>
-          {/* <span
-            className="mt-2 block pb-1 leading-[1.35] text-white/95 text-2xl font-semibold md:text-3xl lg:text-4xl"
-            style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))' }}
-          >
-            Content & talent infrastructure for brands that scale.
-          </span> */}
         </motion.h1>
 
         {/* Slogan */}
@@ -560,8 +523,6 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
         >
-
-         
         </motion.div>
 
         {/* Trusted by + CTA */}
@@ -573,7 +534,7 @@ export function HeroSection() {
         >
           <div className="flex flex-wrap items-center gap-6">
             <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/60 md:text-sm">
-              Trusted by & official partners
+              {t('trustedBy')}
             </span>
             <div className="flex items-center gap-6 md:gap-8">
               <div
@@ -608,7 +569,7 @@ export function HeroSection() {
             }}
             className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-bold text-slate-900 shadow-xl transition hover:bg-white/95 hover:shadow-[0_0_40px_rgba(102,65,237,0.4)] md:px-8 md:py-4 md:text-lg"
           >
-            Let's Work Together
+            {t('letsWorkTogether')}
             <HiArrowRight className="h-5 w-5 transition group-hover:translate-x-0.5" aria-hidden />
           </a>
         </motion.div>
@@ -636,7 +597,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p className="mt-3 text-base font-medium text-white/70 md:text-lg">
-            500+ POWER BRANDS · 98% CLIENT RETENTION
+            {t('positioning')}
           </p>
         </motion.div>
 

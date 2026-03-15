@@ -1,0 +1,28 @@
+{
+  "influencerCampaign": "Gestión de campañas con influencers",
+  "tagline": "Marcas y creadores alineados en un solo lugar.",
+  "comingSoon": "Próximamente",
+  "joinCta": "Sé de los primeros en unirte",
+  "whatIsElevn": "Elevn es <purple>un espacio curado</purple> donde nuestros creadores encuentran oportunidades en moda, gastronomía, tecnología, estilo de vida, viajes y más. Cada creador está aquí porque cree en el trabajo—la calidad y el ajuste de marca son lo primero. Las marcas obtienen acceso directo a talento de confianza; relaciones a largo plazo, briefs claros, derechos e insights de rendimiento—todo en <blue>un solo lugar</blue>.",
+  "whyElevn": "Por qué Elevn",
+  "insights": {
+    "connection": { "label": "Conexión con los mejores creadores del mundo", "short": "Accede a una red global de talento verificado en más de 15 países." },
+    "campaign": { "label": "Gestión semanal de campañas", "short": "Ejecuta campañas recurrentes con briefs claros, plazos y entregables." },
+    "payments": { "label": "Pagos puntuales y términos claros", "short": "Contratos transparentes y pagos confiables para creadores y marcas." },
+    "traceability": { "label": "Trazabilidad y reportes completos", "short": "Rastrea cada activo, aprobación y métrica de rendimiento en un solo lugar." },
+    "performance": { "label": "Insights de rendimiento de campañas", "short": "Dashboards y reportes que muestran qué funciona y qué escalar." },
+    "curated": { "label": "Creadores curados por nicho y ajuste", "short": "Talento seleccionado por calidad y alineación de marca—ajuste a largo plazo, no solo disponibilidad." }
+  },
+  "creatorSupply": "Creator Supply en Elevn",
+  "vettedCreators": "<pink>4,000+</pink> creadores verificados <blue>curados para tus campañas</blue>",
+  "stats": {
+    "ads": "anuncios",
+    "videos": "videos",
+    "engagement": "eng",
+    "likes": "likes",
+    "followers": "seguidores",
+    "ctr": "CTR (%)",
+    "presentOn": "Presente en:",
+    "brands": "Marcas:"
+  }
+}

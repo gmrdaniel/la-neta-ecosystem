@@ -1,0 +1,37 @@
+{
+  "ourStory": "Nuestra historia",
+  "title": "Quién es",
+  "titleHighlight": "La Neta",
+  "hook": "Un equipo. Plazos claros. Derechos completos sobre el contenido. Gestionamos todo el pipeline para que tu marca se enfoque en la estrategia, no en la logística.",
+  "paragraphs": [
+    "Las marcas y equipos de marketing nos eligen porque obtienen un solo socio para todo el pipeline: estrategia, talento, producción y distribución. Construimos una red verificada de 4,000+ creadores y un proceso probado para que puedas escalar la producción creativa sin aumentar personal ni fricción operativa. Sin conjeturas—entregables claros, propiedad clara y resultados que se acumulan.",
+    "Estamos hechos para el rendimiento. Cada anuncio que producimos está diseñado para mover usuarios del scroll al clic—auténtico, nativo de la plataforma y optimizado para los canales que impulsan tu negocio. Ya seas un equipo de crecimiento, un gerente de marca o un CMO buscando dominar el feed, nosotros traemos la ejecución; tú mantienes el control de la estrategia y la visión."
+  ],
+  "letsWorkTogether": "Trabajemos Juntos",
+  "whatWeAchieved": "Lo que hemos logrado",
+  "metrics": {
+    "creators": { "value": "4,000+", "label": "Creadores en nuestra red", "sub": "Verificados, activos, listos para rendir" },
+    "countries": { "value": "15+", "label": "Países", "sub": "Talento local, alcance global" },
+    "impressions": { "value": "2B+", "label": "Impresiones entregadas", "sub": "En todas las plataformas y formatos" },
+    "retention": { "value": "98%", "label": "Retención de clientes", "sub": "Las marcas que escalan con nosotros se quedan" },
+    "delivery": { "value": "21 días", "label": "Tiempo de entrega", "sub": "Del brief al creativo en vivo" },
+    "brands": { "value": "500+", "label": "Marcas Líderes", "sub": "Desde startups hasta nombres reconocidos" }
+  },
+  "ourCreativeProcess": "Nuestro proceso creativo",
+  "processDescription": "De la idea al anuncio en vivo—cómo convertimos tu visión en contenido que rinde.",
+  "processSub": "Un solo punto de contacto · SLAs claros · NDA y propiedad intelectual cuando lo necesites",
+  "processSteps": {
+    "step1": {
+      "title": "Generamos variantes con IA",
+      "body": "Usamos IA para producir múltiples variantes creativas a partir de un solo concepto—diferentes ganchos, ángulos y formatos. Eso significa que no apostamos a una sola idea; probamos qué resuena y escalamos lo que funciona. Tu presupuesto rinde más porque aprendemos rápido y duplicamos los ganadores."
+    },
+    "step2": {
+      "title": "Editamos el contenido",
+      "body": "Nuestros editores cortan, marcan el ritmo y optimizan cada pieza para la plataforma donde vivirá. Cada frame se gana su lugar. Mantenemos la voz y autenticidad del creador mientras nos aseguramos de que la historia impulse la acción—del scroll al clic, sin fricción."
+    },
+    "step3": {
+      "title": "Creamos anuncios UGC",
+      "body": "Convertimos el contenido de creadores en anuncios de alto rendimiento: auténticos, nativos de la plataforma y hechos para convertir. Personas reales, resultados reales. El tipo de contenido que genera confianza y capta atención en feeds saturados. Así es como dominamos—no con ruido, sino con relevancia."
+    }
+  }
+}

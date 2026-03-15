@@ -9,60 +9,21 @@ import { TbTools } from 'react-icons/tb'
 import { GoGoal } from "react-icons/go";
 import { MdOutlineCategory } from 'react-icons/md'
 import type { IconType } from 'react-icons'
+import { useTranslation } from 'react-i18next'
 
-const TRANSFORMATION_ROWS: {
-  problem: string
-  solution: string
-  tagline: string
-  icon: IconType
-  iconPosition: 'left' | 'center' | 'right'
-}[] = [
-  {
-    problem: 'You have no ads',
-    solution: 'We produce advertisements for you',
-    tagline: 'From brief to feed—we own the pipeline.',
-    icon: RiAdvertisementFill,
-    iconPosition: 'right',
-  },
-  {
-    problem: 'Producing ads takes too much of your time',
-    solution: 'We do it in no time',
-    tagline: 'Fast turnaround without the back-and-forth.',
-    icon: BiSolidTimer,
-    iconPosition: 'right',
-  },
-  {
-    problem: "You don't have any content creators",
-    solution: 'We have a network of 4,000+ creators',
-    tagline: 'Curated talent, ready to perform for your brand.',
-    icon: FaUsersLine,
-    iconPosition: 'right',
-  },
-  {
-    problem: "You don't have specialized equipment",
-    solution: 'We adapt content for every network',
-    tagline: 'One asset, every format. Native to each platform.',
-    icon: TbTools,
-    iconPosition: 'right',
-  },
-  {
-    problem: 'You need a variety of ads',
-    solution: 'We create ad variety that attracts buyers',
-    tagline: 'Volume + variation. Test more, scale what works.',
-    icon: MdOutlineCategory,
-    iconPosition: 'right',
-  },
-  {
-    problem: "You can't capture the audience's attention",
-    solution: 'We design for attention—hooks that convert',
-    tagline: 'Data-led creative. We know what stops the scroll.',
-    icon: GoGoal,
-    iconPosition: 'right',
-  },
+const ROW_ICONS: IconType[] = [
+  RiAdvertisementFill,
+  BiSolidTimer,
+  FaUsersLine,
+  TbTools,
+  MdOutlineCategory,
+  GoGoal,
 ]
 
 export function ProblemsVsSolutionsSection() {
   const { openModal } = useContactModal()
+  const { t } = useTranslation('adFactory')
+  const items = t('problems.items', { returnObjects: true }) as { problem: string; solution: string; tagline: string }[]
 
   return (
     <motion.section
@@ -77,23 +38,23 @@ export function ProblemsVsSolutionsSection() {
             className="mb-4 inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
             style={{ color: 'var(--laneta-purple)', backgroundColor: 'rgba(102, 65, 237, 0.15)' }}
           >
-            6 friction points · 6 ways we fix them
+            {t('problems.frictionBadge')}
           </p>
           <h2 className="text-2xl font-bold tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
-          Eliminate Friction, Amplify Production
+            {t('problems.sectionTitle')}
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-slate-600 md:text-lg">
-            Stop struggling with ads. Start scaling them.
+            {t('problems.subtitle')}
           </p>
           <p className="mt-2 text-sm text-slate-500">
-            Every bottleneck you feel—we built The Ad Factory to remove it.
+            {t('problems.subtitleDetail')}
           </p>
         </div>
 
         <div className="relative mx-auto max-w-3xl">
           <div className="divide-y divide-slate-200">
-            {TRANSFORMATION_ROWS.map((row, i) => {
-              const Icon = row.icon
+            {items.map((row, i) => {
+              const Icon = ROW_ICONS[i]
               return (
               <div
                 key={i}
@@ -110,7 +71,7 @@ export function ProblemsVsSolutionsSection() {
                   </p>
                 </div>
 
-                {/* Arrow — transform */}
+                {/* Arrow */}
                 <div className="hidden items-center justify-center md:flex">
                   <span
                     className="text-2xl text-slate-400 transition-all duration-300 group-hover:text-[var(--laneta-purple)]"
@@ -120,7 +81,7 @@ export function ProblemsVsSolutionsSection() {
                   </span>
                 </div>
 
-                {/* Solution — hover = progress */}
+                {/* Solution */}
                 <div className="flex items-start gap-3 transition-transform duration-300 group-hover:translate-x-1 md:rounded-lg md:py-2 md:pr-2 md:transition-colors group-hover:md:bg-[var(--laneta-purple)]/10">
                   <HiCheckCircle
                     className="mt-0.5 size-5 shrink-0"
@@ -137,7 +98,7 @@ export function ProblemsVsSolutionsSection() {
                   </div>
                 </div>
 
-                {/* Decorative icon — own column so it stays to the right of solution */}
+                {/* Decorative icon */}
                 <div className="hidden items-center justify-end md:flex">
                   <Icon
                     className="size-20 shrink-0 text-[var(--laneta-purple)]/15 md:size-24"
@@ -152,17 +113,17 @@ export function ProblemsVsSolutionsSection() {
           {/* Closing hook */}
           <div className="mt-10 border-t border-slate-200 pt-10 text-center md:mt-12 md:pt-12">
             <p className="text-lg font-semibold text-slate-800 md:text-xl">
-              One partner. Full pipeline. No more guesswork.
+              {t('problems.closingTitle')}
             </p>
             <p className="mt-2 text-sm text-slate-500">
-              The Ad Factory turns creative chaos into ads that scale.
+              {t('problems.closingBody')}
             </p>
             <button
               type="button"
               onClick={() => openModal('hookHunter')}
               className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--laneta-purple)] to-[var(--laneta-pink)] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-[var(--laneta-purple)]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[var(--laneta-purple)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 focus:ring-offset-white cursor-pointer"
             >
-              Help Me Choose a Pack
+              {t('problems.closingCta')}
               <HiArrowRight className="size-5" aria-hidden />
             </button>
           </div>

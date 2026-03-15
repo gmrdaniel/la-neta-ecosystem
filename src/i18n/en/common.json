@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "aboutUs": "About us",
+    "theAdFactory": "The Ad Factory",
+    "elevnHub": "Elevn Hub",
+    "letsWorkTogether": "Let's Work Together",
+    "home": "Home",
+    "solutions": "Solutions",
+    "howWeOperate": "How we operate",
+    "packages": "Packages",
+    "roadmap": "Roadmap",
+    "faqs": "FAQs",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "company": "Company",
+    "ourPlatforms": "Our Platforms",
+    "legal": "Legal",
+    "connect": "Connect",
+    "aboutUs": "About us",
+    "whatWeAchieved": "What we've achieved",
+    "ourCreativeProcess": "Our creative process",
+    "ourEcosystem": "Our ecosystem",
+    "termsConditions": "Terms & Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "presence": "Presence",
+    "copyright": "© 2026 La Neta · Leaders of the digital ecosystem"
+  },
+  "slogan": "You bring the vision. We deliver the execution that scales it globally.",
+  "language": "Language",
+  "languageEn": "English",
+  "languageEs": "Español"
+}

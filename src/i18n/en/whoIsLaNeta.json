@@ -1,0 +1,37 @@
+{
+  "ourStory": "Our story",
+  "title": "Who is",
+  "titleHighlight": "La Neta",
+  "hook": "One team. Clear timelines. Full rights to the content. We run the entire pipeline so your brand can focus on strategy—not logistics.",
+  "paragraphs": [
+    "Brands and marketing teams choose us because they get one partner for the full pipeline: strategy, talent, production, and distribution. We built a vetted network of 4,000+ creators and a proven process so you can scale creative output without scaling headcount or operational friction. No guesswork—clear deliverables, clear ownership, and results that compound.",
+    "We're built for performance. Every ad we produce is designed to move users from scroll to click—authentic, platform-native, and optimized for the channels that drive your business. Whether you're a growth team, a brand manager, or a CMO looking to own the feed, we bring the execution; you keep control of the strategy and the vision."
+  ],
+  "letsWorkTogether": "Let's Work Together",
+  "whatWeAchieved": "What we've achieved",
+  "metrics": {
+    "creators": { "value": "4,000+", "label": "Creators in our network", "sub": "Vetted, active, ready to perform" },
+    "countries": { "value": "15+", "label": "Countries", "sub": "Local talent, global reach" },
+    "impressions": { "value": "2B+", "label": "Impressions delivered", "sub": "Across platforms and formats" },
+    "retention": { "value": "98%", "label": "Client retention", "sub": "Brands that scale with us stay" },
+    "delivery": { "value": "21 days", "label": "Delivery time", "sub": "From brief to live creative" },
+    "brands": { "value": "500+", "label": "Power Brands", "sub": "From startups to household names" }
+  },
+  "ourCreativeProcess": "Our creative process",
+  "processDescription": "From idea to live ad—how we turn your vision into content that performs.",
+  "processSub": "Single point of contact · Clear SLAs · NDA & IP-friendly when you need it",
+  "processSteps": {
+    "step1": {
+      "title": "We generate variants with AI",
+      "body": "We use AI to produce multiple creative variants from a single concept—different hooks, angles, and formats. That means we don't bet on one idea; we test what resonates and scale what works. Your budget goes further because we learn fast and double down on winners."
+    },
+    "step2": {
+      "title": "We edit the content",
+      "body": "Our editors cut, pace, and optimize every piece for the platform it's going to live on. Every frame earns its place. We keep the creator's voice and authenticity while making sure the story drives action—from scroll to click, without the friction."
+    },
+    "step3": {
+      "title": "We create UGC ads",
+      "body": "We turn creator content into high-performing ads: authentic, platform-native, and built to convert. Real people, real results. The kind of content that builds trust and gets attention in crowded feeds. That's how we dominate—not with noise, but with relevance."
+    }
+  }
+}

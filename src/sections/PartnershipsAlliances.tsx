@@ -14,6 +14,7 @@ import {
 import { FiCheckCircle } from 'react-icons/fi'
 import type { IconType } from 'react-icons'
 import { AllyDashboard, type AllyStats } from './AllyDashboard'
+import { useTranslation } from 'react-i18next'
 
 const SECTION_ID = 'partnerships-alliances'
 
@@ -294,6 +295,17 @@ const CLOSER_FRIENDS_STATS: Record<string, AllyStats> = Object.fromEntries(
   CLOSER_FRIENDS.map((b) => [b.id, buildAllyStats(b)])
 )
 
+function BrandBubbleTooltip({ brand }: { brand: Brand }) {
+  const { t } = useTranslation('partnerships')
+  return (
+    <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-center shadow-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+      <p className="text-xs font-semibold text-slate-800">{brand.name}</p>
+      {brand.since && <p className="mt-0.5 text-xs text-slate-500">{t('partnerSince', { year: brand.since })}</p>}
+      {brand.campaigns != null && <p className="text-xs text-[var(--laneta-pink)]">{t('activeCampaigns', { count: brand.campaigns })}</p>}
+    </div>
+  )
+}
+
 function BrandBubble({
   brand,
   size = 'medium',
@@ -349,11 +361,7 @@ function BrandBubble({
         )}
       </Wrapper>
       {!onClick && (
-        <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-center shadow-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          <p className="text-xs font-semibold text-slate-800">{brand.name}</p>
-          {brand.since && <p className="mt-0.5 text-xs text-slate-500">Partner since {brand.since}</p>}
-          {brand.campaigns != null && <p className="text-xs text-[var(--laneta-pink)]">Active campaigns: {brand.campaigns}</p>}
-        </div>
+        <BrandBubbleTooltip brand={brand} />
       )}
     </motion.div>
   )
@@ -366,6 +374,7 @@ function PartnershipModal({
   content: PartnershipModalContent
   onClose: () => void
 }) {
+  const { t } = useTranslation('partnerships')
   const isComingSoon = !content.model && !content.models?.length && (!content.sellingPoints || content.sellingPoints.length <= 1)
 
   return (
@@ -401,7 +410,7 @@ function PartnershipModal({
             type="button"
             onClick={onClose}
             className="absolute right-4 top-4 rounded-full bg-white/20 p-2 text-white backdrop-blur-sm hover:bg-white/30"
-            aria-label="Close"
+            aria-label={t('close')}
           >
             <span className="text-xl leading-none">×</span>
           </button>
@@ -409,14 +418,14 @@ function PartnershipModal({
 
         <div className="mx-auto max-w-xl px-6 py-6">
           {isComingSoon ? (
-            <p className="py-8 text-center text-slate-500">More details coming soon.</p>
+            <p className="py-8 text-center text-slate-500">{t('moreDetails')}</p>
           ) : (
             <>
               {/* Benefits: full list, no truncation */}
               {content.sellingPoints && content.sellingPoints.length > 0 && (
                 <div className="mb-6">
                   <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-[var(--laneta-purple)]">
-                    Why join
+                    {t('whyJoin')}
                   </p>
                   <ul className="space-y-2.5">
                     {content.sellingPoints.map((point, i) => (
@@ -436,7 +445,7 @@ function PartnershipModal({
               {content.process && content.process.length > 0 && (
                 <div className="mb-6">
                   <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-slate-500">
-                    How it works
+                    {t('howItWorks')}
                   </p>
                   <div className="flex flex-col gap-3">
                     {content.process.map((block, i) => (
@@ -458,7 +467,7 @@ function PartnershipModal({
               {content.models && content.models.length > 0 && (
                 <div className="space-y-4">
                   <p className="text-center text-xs font-semibold uppercase tracking-widest text-slate-500">
-                    Opportunities
+                    {t('opportunities')}
                   </p>
                   {content.models.map((block, i) => (
                     <div
@@ -550,6 +559,7 @@ function PartnershipModal({
 }
 
 export function PartnershipsAlliances() {
+  const { t } = useTranslation('partnerships')
   const sectionRef = useRef<HTMLElement>(null)
   const [modalKey, setModalKey] = useState<string | null>(null)
   const [selectedAllyIndex, setSelectedAllyIndex] = useState(0)
@@ -593,13 +603,13 @@ export function PartnershipsAlliances() {
           transition={{ duration: 0.5 }}
         >
           <p className="mb-3 text-sm font-medium tracking-[0.2em] uppercase text-[var(--laneta-blue)]">
-            Our ecosystem
+            {t('ourEcosystem')}
           </p>
           <h2 className="text-3xl font-extrabold tracking-tight text-slate-800 md:text-4xl lg:text-5xl">
-            Partnerships & <span className="text-[var(--laneta-pink)]">Alliances</span>
+            {t('title')} <span className="text-[var(--laneta-pink)]">{t('titleHighlight')}</span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
-            Each brand is a node in our network—a universe to explore together.
+            {t('description')}
           </p>
         </motion.header>
 
@@ -612,7 +622,7 @@ export function PartnershipsAlliances() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <h3 className="mb-6 text-center text-lg font-bold text-slate-700 md:text-xl">
-            Our partnerships
+            {t('ourPartnerships')}
           </h3>
           <div className="flex flex-wrap items-end justify-center gap-8 md:gap-12">
             {PARTNERSHIPS.map((brand, i) => (
@@ -637,7 +647,7 @@ export function PartnershipsAlliances() {
         >
           <div className="mb-8 text-center">
             <h3 className="text-2xl font-extrabold tracking-tight text-slate-800 md:text-3xl">
-              Trusted by <span className="bg-gradient-to-r from-[var(--laneta-purple)] to-[var(--laneta-pink)] bg-clip-text text-transparent">leading names</span>
+              {t('trustedBy')} <span className="bg-gradient-to-r from-[var(--laneta-purple)] to-[var(--laneta-pink)] bg-clip-text text-transparent">{t('leadingNames')}</span>
             </h3>
             <div className="mx-auto mt-3 h-0.5 w-16 rounded-full bg-gradient-to-r from-[var(--laneta-purple)] to-[var(--laneta-pink)]" aria-hidden />
           </div>
@@ -662,7 +672,7 @@ export function PartnershipsAlliances() {
 
           {/* bubbles as pagination */}
           <p className="mb-3 text-center text-xs font-medium text-slate-500">
-            Select an ally to view stats
+            {t('selectAlly')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
             {CLOSER_FRIENDS.map((brand, i) => (

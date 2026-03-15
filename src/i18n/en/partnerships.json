@@ -1,0 +1,31 @@
+{
+  "ourEcosystem": "Our ecosystem",
+  "title": "Partnerships &",
+  "titleHighlight": "Alliances",
+  "description": "Each brand is a node in our network—a universe to explore together.",
+  "ourPartnerships": "Our partnerships",
+  "trustedBy": "Trusted by",
+  "leadingNames": "leading names",
+  "selectAlly": "Select an ally to view stats",
+  "partnerSince": "Partner since {{year}}",
+  "activeCampaigns": "Active campaigns: {{count}}",
+  "moreDetails": "More details coming soon.",
+  "whyJoin": "Why join",
+  "howItWorks": "How it works",
+  "opportunities": "Opportunities",
+  "target": "Target: {{target}}",
+  "loopFactor": "The \"Loop\" factor",
+  "keySelling": "Key selling points",
+  "restricted": "Restricted:",
+  "excluded": "Excluded:",
+  "close": "Close",
+  "dashboard": {
+    "avgEngagement": "Avg. engagement",
+    "successRate": "Success rate",
+    "totalImpressions": "Total impressions",
+    "adsGenerated": "Ads generated",
+    "impressionsByQuarter": "Impressions by quarter",
+    "engagementByChannel": "Engagement by channel",
+    "impressionsK": "Impressions (K)"
+  }
+}

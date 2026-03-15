@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { FloatingCard } from '../../components/FloatingCard'
 import { HiArrowRight, HiX } from 'react-icons/hi'
 import { useContactModal, type ContactModalVariant } from '../../contexts/ContactModalContext'
-import { AD_FACTORY_SLOGAN } from '../../constants/copy'
+import { useTranslation } from 'react-i18next'
 
 const LETS_TALK_IMAGE = 'https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/lets_talk.png'
 
@@ -18,87 +18,38 @@ const GOOGLE_FORM_ENTRIES = {
   urgency: 'entry.1628389655',
 } as const
 
-const SERVICE_TOPIC_OPTIONS: { label: string; value: string }[] = [
-  { label: 'The Ad Factory (Advertising / influencer campaigns)', value: 'The Ad Factory (Campañas publicitarias/de influencia)' },
-  { label: 'The Glitch (Content / media strategy)', value: 'The Glitch (Estrategia de contenido/Medios)' },
-  { label: 'The Hook Hunter (Opportunity / trend identification)', value: 'The Hook Hunter (Identificación de oportunidades/Tendencias)' },
-  { label: 'The Amplifier (Surround audience with consistent proof)', value: 'The Amplifier (Rodear a la audiencia con prueba consistente)' },
-  { label: 'Empire Mode (Category visibility / strategic saturation)', value: 'Empire Mode (Visibilidad de categoría/Saturación estratégica)' },
-  { label: 'Partnership / general collaboration', value: 'Partnership/Colaboración general' },
-  { label: 'Other topic', value: 'Otro tema' },
+/** Values sent to Google Form are always in Spanish (backend expectation) */
+const SERVICE_TOPIC_VALUES = [
+  'The Ad Factory (Campañas publicitarias/de influencia)',
+  'The Glitch (Estrategia de contenido/Medios)',
+  'The Hook Hunter (Identificación de oportunidades/Tendencias)',
+  'The Amplifier (Rodear a la audiencia con prueba consistente)',
+  'Empire Mode (Visibilidad de categoría/Saturación estratégica)',
+  'Partnership/Colaboración general',
+  'Otro tema',
 ]
 
 const VARIANT_TO_SERVICE_TOPIC: Record<ContactModalVariant, string> = {
-  adFactory: 'The Ad Factory (Campañas publicitarias/de influencia)',
-  glitch: 'The Glitch (Estrategia de contenido/Medios)',
-  hookHunter: 'The Hook Hunter (Identificación de oportunidades/Tendencias)',
-  amplifier: 'The Amplifier (Rodear a la audiencia con prueba consistente)',
-  empire: 'Empire Mode (Visibilidad de categoría/Saturación estratégica)',
+  adFactory: SERVICE_TOPIC_VALUES[0],
+  glitch: SERVICE_TOPIC_VALUES[1],
+  hookHunter: SERVICE_TOPIC_VALUES[2],
+  amplifier: SERVICE_TOPIC_VALUES[3],
+  empire: SERVICE_TOPIC_VALUES[4],
   global: '',
-}
-
-const URGENCY_LABELS: Record<string, string> = {
-  1: 'Just exploring',
-  2: 'Not urgent (next quarter)',
-  3: 'Moderate need (this month)',
-  4: 'Urgent (this week)',
-  5: 'We need it as soon as possible'
 }
 
 type LetsWorkTogetherVariant = ContactModalVariant
 
-const COPY = {
-  global: {
-    intro: "Have a vision you'd like to bring to life? Let's talk.",
-    body: "Whether you need UGC ads, AI-powered content, high-performing hooks, or a full creative pipeline—we're here to help your brand scale. Share your goals, timelines, or a rough idea. We'll match you with the right solution and get back to you with next steps.",
-    quote: AD_FACTORY_SLOGAN.split('. ')[0] + '.',
-    quoteAccent: AD_FACTORY_SLOGAN.split('. ').slice(1).join('. '),
-    messagePlaceholder: "Tell us about your brand and what you're looking for. Campaign goals, preferred formats, timeline—whatever helps us get started.",
-  },
-  adFactory: {
-    intro: "Do you have an idea you'd like to bring to life? Don't waste time and talk to us.",
-    body: "Whether you need ads that convert, creative that stands out, or a full pipeline from brief to feed—we're here to turn your vision into reality. Share your goals, timelines, or a rough concept. We'll get back to you with next steps.",
-    quote: AD_FACTORY_SLOGAN.split('. ')[0] + '.',
-    quoteAccent: AD_FACTORY_SLOGAN.split('. ').slice(1).join('. '),
-    messagePlaceholder: 'What do you want to bring to life? Campaign goals, formats, timeline—share whatever helps us get started.',
-  },
-  glitch: {
-    intro: "Ready to amplify your brand with AI-generated content? Let's talk about The Glitch.",
-    body: "Whether you need AI avatars for your brand, a 24-asset content pack, or a full 21-day roadmap from kickoff to delivery—we're here to make it happen. Share your campaign goals and timelines. We'll get back to you with next steps.",
-    quote: 'You bring the idea.',
-    quoteAccent: "We bring the AI-powered content.",
-    messagePlaceholder: "Tell us about your brand and campaign goals. Interested in The Glitch? Share your timeline and we'll reach out.",
-  },
-  hookHunter: {
-    intro: "Ready for hooks that convert? Let's talk about The Hook Hunter, The Amplifier, or Empire Mode.",
-    body: "Whether you want to validate winning hooks with 1 talent (The Hook Hunter), dominate your feed with 3 (The Amplifier), or own your category with 5 (Empire Mode)—we're here to turn your vision into UGC content that performs. Share your goals, timelines, or pack preference. We'll get back to you with next steps.",
-    quote: 'You bring the idea.',
-    quoteAccent: 'We bring the UGC talents and hooks that convert.',
-    messagePlaceholder: 'Which pack interests you—Hunter, Amplifier, or Empire? Share your campaign goals, timeline, and we\'ll reach out.',
-  },
-  amplifier: {
-    intro: "Ready for hooks that convert? Let's talk about The Hook Hunter, The Amplifier, or Empire Mode.",
-    body: "Whether you want to validate winning hooks with 1 talent (The Hook Hunter), dominate your feed with 3 (The Amplifier), or own your category with 5 (Empire Mode)—we're here to turn your vision into UGC content that performs. Share your goals, timelines, or pack preference. We'll get back to you with next steps.",
-    quote: 'You bring the idea.',
-    quoteAccent: 'We bring the UGC talents and hooks that convert.',
-    messagePlaceholder: 'Which pack interests you—Hunter, Amplifier, or Empire? Share your campaign goals, timeline, and we\'ll reach out.',
-  },
-  empire: {
-    intro: "Ready for hooks that convert? Let's talk about The Hook Hunter, The Amplifier, or Empire Mode.",
-    body: "Whether you want to validate winning hooks with 1 talent (The Hook Hunter), dominate your feed with 3 (The Amplifier), or own your category with 5 (Empire Mode)—we're here to turn your vision into UGC content that performs. Share your goals, timelines, or pack preference. We'll get back to you with next steps.",
-    quote: 'You bring the idea.',
-    quoteAccent: 'We bring the UGC talents and hooks that convert.',
-    messagePlaceholder: 'Which pack interests you—Hunter, Amplifier, or Empire? Share your campaign goals, timeline, and we\'ll reach out.',
-  },
-}
-
 const IFRAME_NAME = 'google-form-submit-target'
 
 function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => void; variant?: LetsWorkTogetherVariant }) {
-  const copy = COPY[variant ?? 'adFactory']
+  const { t } = useTranslation('adFactory')
+  const copyKey = variant === 'amplifier' || variant === 'empire' ? 'hookHunter' : variant
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [serviceTopic, setServiceTopic] = useState(() => VARIANT_TO_SERVICE_TOPIC[variant ?? 'adFactory'])
+
+  const serviceTopicLabels = t('letsWorkTogether.serviceTopics', { returnObjects: true }) as string[]
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -179,13 +130,13 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
         <div className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-5 md:p-8">
           <div className="mb-4 flex items-center justify-between md:mb-6">
             <h2 id="contact-modal-title" className="text-lg font-bold text-[var(--laneta-slate)] md:text-2xl">
-              Let&apos;s talk
+              {t('letsWorkTogether.letsTalk')}
             </h2>
             <button
               type="button"
               onClick={onClose}
               className="rounded-full p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700"
-              aria-label="Close"
+              aria-label={t('letsWorkTogether.close')}
             >
               <HiX className="size-5" />
             </button>
@@ -193,53 +144,53 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
 
           {submitted ? (
             <div className="flex flex-col items-center justify-center py-8 text-center">
-              <p className="text-lg font-semibold text-[var(--laneta-slate)]">Thank you.</p>
-              <p className="mt-2 text-slate-600">We&apos;ve received your message and will get back to you with next steps as soon as possible. 🚀</p>
+              <p className="text-lg font-semibold text-[var(--laneta-slate)]">{t('letsWorkTogether.thankYou')}</p>
+              <p className="mt-2 text-slate-600">{t('letsWorkTogether.thankYouBody')}</p>
             </div>
           ) : (
             <form className="space-y-3 md:space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="contact-name" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
-                  Full name
+                  {t('letsWorkTogether.fullName')}
                 </label>
                 <input
                   id="contact-name"
                   type="text"
                   name="name"
                   required
-                  placeholder="John Doe"
+                  placeholder={t('letsWorkTogether.namePlaceholder')}
                   className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
                 />
               </div>
               <div>
                 <label htmlFor="contact-email" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
-                  Email
+                  {t('letsWorkTogether.email')}
                 </label>
                 <input
                   id="contact-email"
                   type="email"
                   name="email"
                   required
-                  placeholder="john.doe@example.com"
+                  placeholder={t('letsWorkTogether.emailPlaceholder')}
                   className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
                 />
               </div>
               <div>
                 <label htmlFor="contact-company" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
-                  Company or project
+                  {t('letsWorkTogether.companyLabel')}
                 </label>
                 <input
                   id="contact-company"
                   type="text"
                   name="company"
                   required
-                  placeholder="Your brand or company"
+                  placeholder={t('letsWorkTogether.companyPlaceholder')}
                   className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
                 />
               </div>
               <div>
                 <label htmlFor="contact-service" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
-                  What service or topic would you like to discuss?
+                  {t('letsWorkTogether.serviceLabel')}
                 </label>
                 <select
                   id="contact-service"
@@ -249,49 +200,49 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
                   onChange={(e) => setServiceTopic(e.target.value)}
                   className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
                 >
-                  <option value="">Choose</option>
-                  {SERVICE_TOPIC_OPTIONS.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
+                  <option value="">{t('letsWorkTogether.choose')}</option>
+                  {serviceTopicLabels.map((label, i) => (
+                    <option key={i} value={SERVICE_TOPIC_VALUES[i]}>
+                      {label}
                     </option>
                   ))}
                 </select>
               </div>
               <div>
                 <label htmlFor="contact-subject" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
-                  Subject (brief title of your project or idea)
+                  {t('letsWorkTogether.subjectLabel')}
                 </label>
                 <input
                   id="contact-subject"
                   type="text"
                   name="subject"
                   required
-                  placeholder="e.g. Campaign inquiry, The Glitch, partnership"
+                  placeholder={t('letsWorkTogether.subjectPlaceholder')}
                   className="w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:px-4 md:py-3 md:text-base"
                 />
               </div>
               <div>
                 <label htmlFor="contact-message" className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
-                  Message: tell us what you need (goals, timeline, formats, or any relevant details)
+                  {t('letsWorkTogether.messageLabel')}
                 </label>
                 <textarea
                   id="contact-message"
                   name="message"
                   required
                   rows={3}
-                  placeholder={copy.messagePlaceholder}
+                  placeholder={t(`letsWorkTogether.copy.${copyKey}.messagePlaceholder`)}
                   className="w-full resize-none rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 transition-colors focus:border-[var(--laneta-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)]/20 md:rounded-xl md:rows-4 md:px-4 md:py-3 md:text-base"
                 />
               </div>
               <div>
                 <span className="mb-1 block text-xs font-medium text-slate-700 md:mb-1.5 md:text-sm">
-                  How urgent is your need for a response?
+                  {t('letsWorkTogether.urgencyLabel')}
                 </span>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2" role="radiogroup" aria-label="Urgency">
                   {(['1', '2', '3', '4', '5'] as const).map((num) => (
                     <label key={num} className="flex cursor-pointer items-center gap-1.5">
                       <input type="radio" name="urgency" value={num} required className="text-[var(--laneta-purple)]" />
-                      <span className="text-sm text-slate-700">{URGENCY_LABELS[num]}</span>
+                      <span className="text-sm text-slate-700">{t(`letsWorkTogether.urgency.${num}`)}</span>
                     </label>
                   ))}
                 </div>
@@ -301,7 +252,7 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
                 disabled={isSubmitting}
                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--laneta-purple)] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-[var(--laneta-purple)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--laneta-purple)] focus:ring-offset-2 disabled:opacity-70 md:rounded-xl md:px-6 md:py-3.5 md:text-base cursor-pointer hover:cursor-pointer"
               >
-                {isSubmitting ? 'Sending…' : 'Send message'}
+                {isSubmitting ? t('letsWorkTogether.sending') : t('letsWorkTogether.sendMessage')}
                 <HiArrowRight className="size-5" />
               </button>
             </form>
@@ -315,11 +266,15 @@ function ContactFormModal({ onClose, variant = 'adFactory' }: { onClose: () => v
 const HOOK_HUNTER_ACCENT = '#f59e0b'
 
 export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: LetsWorkTogetherVariant }) {
+  const { t } = useTranslation('adFactory')
   const { modalOpen, variant: modalVariant, openModal, closeModal } = useContactModal()
-  const copy = COPY[variant ?? 'adFactory']
+  const copyKey = variant === 'amplifier' || variant === 'empire' ? 'hookHunter' : variant
   const isHookHunter = variant === 'hookHunter'
   const showModal = modalOpen
   const effectiveVariant = modalOpen ? modalVariant : variant
+
+  const sloganQuote = t('common:slogan').split('. ')[0] + '.'
+  const sloganAccent = t('common:slogan').split('. ').slice(1).join('. ')
 
   const content = (
     <div className="relative grid gap-10 md:grid-cols-[1fr_1fr] md:items-center md:gap-12 lg:gap-16">
@@ -332,21 +287,21 @@ export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: L
       />
       <div className="order-2 md:order-1 text-center md:text-left">
         <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl lg:text-4xl">
-          Let&apos;s Work Together
+          {t('letsWorkTogether.sectionTitle')}
         </h2>
         <p className="mt-4 text-lg leading-relaxed text-slate-700 md:text-xl">
-          {copy.intro}
+          {t(`letsWorkTogether.copy.${copyKey}.intro`)}
         </p>
         <p className="mt-3 leading-relaxed text-slate-700">
-          {copy.body}
+          {t(`letsWorkTogether.copy.${copyKey}.body`)}
         </p>
         <div
           className="mt-6 border-l-4 pl-5"
           style={{ borderColor: isHookHunter ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)' }}
         >
           <p className="text-base font-medium text-slate-900 md:text-lg">
-            {copy.quote}{' '}
-            <span style={{ color: isHookHunter ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)' }}>{copy.quoteAccent}</span>
+            {sloganQuote}{' '}
+            <span style={{ color: isHookHunter ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)' }}>{sloganAccent}</span>
           </p>
         </div>
         <div className="mt-8 flex justify-center md:justify-start">
@@ -358,7 +313,7 @@ export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: L
               backgroundColor: isHookHunter ? HOOK_HUNTER_ACCENT : 'var(--laneta-purple)',
             }}
           >
-            Talk to us
+            {t('letsWorkTogether.talkToUs')}
             <HiArrowRight className="size-5" />
           </button>
         </div>
@@ -367,7 +322,7 @@ export function LetsWorkTogetherSection({ variant = 'adFactory' }: { variant?: L
         <div className="relative overflow-hidden rounded-2xl ring-1 ring-slate-200/80 shadow-lg">
           <img
             src={LETS_TALK_IMAGE}
-            alt="Let's work together — bring your idea to life"
+            alt=""
             className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div

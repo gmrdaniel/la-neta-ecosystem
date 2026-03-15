@@ -12,6 +12,7 @@ import {
 } from 'chart.js'
 import { Bar, Doughnut } from 'react-chartjs-2'
 import type { IconType } from 'react-icons'
+import { useTranslation } from 'react-i18next'
 
 export type AllyBrand = {
   id: string
@@ -89,6 +90,7 @@ function BrandLogo({ brand }: { brand: AllyBrand }) {
 }
 
 export function AllyDashboard({ brand, stats }: { brand: AllyBrand; stats: AllyStats }) {
+  const { t } = useTranslation('partnerships')
   const primaryRgba = brand.brandColor ? hexToRgba(brand.brandColor, 0.7) : 'rgba(102, 65, 237, 0.7)'
   const primaryRgb = brand.brandColor || 'rgb(102, 65, 237)'
 
@@ -96,7 +98,7 @@ export function AllyDashboard({ brand, stats }: { brand: AllyBrand; stats: AllyS
     labels: ['Q1', 'Q2', 'Q3', 'Q4'],
     datasets: [
       {
-        label: 'Impressions (K)',
+        label: t('dashboard.impressionsK'),
         data: stats.impressionsByQuarter.map((v) => Math.round(v / 1000)),
         backgroundColor: primaryRgba,
         borderColor: primaryRgb,
@@ -166,7 +168,7 @@ export function AllyDashboard({ brand, stats }: { brand: AllyBrand; stats: AllyS
         <div>
           <h4 className="text-lg font-bold text-slate-800">{brand.name}</h4>
           {brand.since && (
-            <p className="text-xs text-slate-500">Partner since {brand.since}</p>
+            <p className="text-xs text-slate-500">{t('partnerSince', { year: brand.since })}</p>
           )}
         </div>
       </div>
@@ -183,34 +185,34 @@ export function AllyDashboard({ brand, stats }: { brand: AllyBrand; stats: AllyS
           >
             {stats.engagementRate}%
           </p>
-          <p className="text-xs font-medium text-slate-600">Avg. engagement</p>
+          <p className="text-xs font-medium text-slate-600">{t('dashboard.avgEngagement')}</p>
         </div>
         <div className="rounded-xl bg-[var(--laneta-pink)]/10 px-4 py-3 text-center">
           <p className="text-2xl font-bold text-[var(--laneta-pink)]">{stats.successRate}%</p>
-          <p className="text-xs font-medium text-slate-600">Success rate</p>
+          <p className="text-xs font-medium text-slate-600">{t('dashboard.successRate')}</p>
         </div>
         <div className="rounded-xl bg-[var(--laneta-blue)]/10 px-4 py-3 text-center">
           <p className="text-2xl font-bold text-[var(--laneta-blue)]">
             {formatImpressions(stats.totalImpressions)}
           </p>
-          <p className="text-xs font-medium text-slate-600">Total impressions</p>
+          <p className="text-xs font-medium text-slate-600">{t('dashboard.totalImpressions')}</p>
         </div>
         <div className="rounded-xl bg-slate-100 px-4 py-3 text-center">
           <p className="text-2xl font-bold text-slate-700">{stats.adsGenerated}</p>
-          <p className="text-xs font-medium text-slate-600">Ads generated</p>
+          <p className="text-xs font-medium text-slate-600">{t('dashboard.adsGenerated')}</p>
         </div>
       </div>
 
       {/* Charts row: min-w-0 evita que el gráfico de barras se salga; doughnut centrado */}
       <div className="grid gap-6 md:grid-cols-2">
         <div className="min-w-0 overflow-hidden">
-          <p className="mb-2 text-sm font-semibold text-slate-700">Impressions by quarter</p>
+          <p className="mb-2 text-sm font-semibold text-slate-700">{t('dashboard.impressionsByQuarter')}</p>
           <div className="h-48 w-full min-w-0">
             <Bar data={barData} options={barOptions} />
           </div>
         </div>
         <div className="flex min-w-0 flex-col items-center">
-          <p className="mb-2 w-full text-sm font-semibold text-slate-700">Engagement by channel</p>
+          <p className="mb-2 w-full text-sm font-semibold text-slate-700">{t('dashboard.engagementByChannel')}</p>
           <div className="h-48 w-full max-w-[260px] md:max-w-[280px]">
             <Doughnut data={doughnutData} options={doughnutOptions} />
           </div>
