@@ -2,32 +2,8 @@ import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { HiMenu, HiX, HiArrowRight } from 'react-icons/hi'
-
-/** Services page nav: ordered as Home - The Ad Factory - Solutions - How we operate - Packages - Roadmap - FAQs.
- *  "Home" is rendered separately as a link back to the main homepage.
- */
-const SERVICES_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#the-ad-factory', label: 'The Ad Factory' },
-  { href: '#problems-vs-solutions', label: 'Solutions' },
-  { href: '#modus-operandi', label: 'How we operate' },
-  { href: '#the-hook-hunter', label: 'Packages' },
-  { href: '#roadmap', label: 'Roadmap' },
-  { href: '#faqs', label: 'FAQs' },
-]
-
-/** Home page: section anchors for scroll spy (pathname === '/'). Only the 3 main sections. Order matches DOM order. */
-const HOME_PAGE_SECTION_LINKS: { href: string; label: string }[] = [
-  { href: '#who-is-la-neta', label: 'About us' },
-  { href: '#the-ad-factory', label: 'The Ad Factory' },
-  { href: '#elevn', label: 'Elevn Hub' },
-]
-
-/** Main nav on home: About us, The Ad Factory, Elevn Hub. Each scrolls to its section. Partnership is inside About us. */
-const NAV_LINKS: { href: string; label: string }[] = [
-  { href: '#who-is-la-neta', label: 'About us' },
-  { href: '#the-ad-factory', label: 'The Ad Factory' },
-  { href: '#elevn', label: 'Elevn Hub' },
-]
+import { HiGlobeAlt } from 'react-icons/hi2'
+import { useTranslation } from 'react-i18next'
 
 function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
   e.preventDefault()
@@ -40,10 +16,35 @@ function scrollToSectionById(href: string) {
   el?.scrollIntoView({ behavior: 'smooth' })
 }
 
-/** Offset from top of viewport (px) to consider a section "active". Use a generous value so the section is marked when it enters the upper part of the screen. */
+/** Offset from top of viewport (px) to consider a section "active". */
 const getActiveSectionOffset = () => Math.min(280, typeof window !== 'undefined' ? window.innerHeight * 0.35 : 280)
 
+function LanguageSwitcher() {
+  const { i18n } = useTranslation()
+  const isSpanish = i18n.language?.startsWith('es')
+  const nextLang = isSpanish ? 'en' : 'es'
+  const label = isSpanish ? 'EN' : 'ES'
+
+  const toggle = () => {
+    i18n.changeLanguage(nextLang)
+    document.documentElement.lang = nextLang
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/80 px-2.5 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition-colors hover:border-[var(--laneta-purple)]/60 hover:bg-white"
+      aria-label={`Switch to ${isSpanish ? 'English' : 'Español'}`}
+    >
+      <HiGlobeAlt className="text-sm text-[var(--laneta-purple)]" />
+      <span>{label}</span>
+    </button>
+  )
+}
+
 export function Header() {
+  const { t } = useTranslation('common')
   const { pathname } = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -52,8 +53,29 @@ export function Header() {
     pathname === '/the-ad-factory' ||
     pathname === '/the-glitch' ||
     pathname === '/the-hook-hunter'
+
+  const SERVICES_PAGE_SECTION_LINKS = [
+    { href: '#the-ad-factory', label: t('nav.theAdFactory') },
+    { href: '#problems-vs-solutions', label: t('nav.solutions') },
+    { href: '#modus-operandi', label: t('nav.howWeOperate') },
+    { href: '#the-hook-hunter', label: t('nav.packages') },
+    { href: '#roadmap', label: t('nav.roadmap') },
+    { href: '#faqs', label: t('nav.faqs') },
+  ]
+
+  const HOME_PAGE_SECTION_LINKS = [
+    { href: '#who-is-la-neta', label: t('nav.aboutUs') },
+    { href: '#the-ad-factory', label: t('nav.theAdFactory') },
+    { href: '#elevn', label: t('nav.elevnHub') },
+  ]
+
+  const NAV_LINKS = [
+    { href: '#who-is-la-neta', label: t('nav.aboutUs') },
+    { href: '#the-ad-factory', label: t('nav.theAdFactory') },
+    { href: '#elevn', label: t('nav.elevnHub') },
+  ]
+
   const pageSectionLinks = isServicesPage ? SERVICES_PAGE_SECTION_LINKS : null
-  /** Services page uses light background: header text must be dark when at top. */
   const isLightPageTop = isServicesPage && !isScrolled
   const headerMaxWidthClass = isServicesPage ? 'max-w-[1440px]' : 'max-w-6xl'
 
@@ -63,7 +85,6 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Scroll spy: highlight the section link for the section currently in view (home + services page)
   useEffect(() => {
     const sectionLinks =
       pathname === '/' ? HOME_PAGE_SECTION_LINKS : isServicesPage ? SERVICES_PAGE_SECTION_LINKS : null
@@ -93,7 +114,8 @@ export function Header() {
     const onScroll = () => updateActiveSection()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [pathname, isServicesPage])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, isServicesPage, t])
 
   const closeMobile = () => setMobileOpen(false)
 
@@ -174,7 +196,7 @@ export function Header() {
                     : 'text-white/90 hover:text-white'
                 }`}
               >
-                Home
+                {t('nav.home')}
               </Link>
               {pageSectionLinks.map((link) => {
                 const isActive = activeSectionHref === link.href
@@ -201,7 +223,7 @@ export function Header() {
                 onClick={(e) => scrollToSection(e, '#lets-work-together')}
                 className="inline-flex items-center gap-1.5 rounded-xl bg-[var(--laneta-purple)] px-4 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-lg"
               >
-                Let&apos;s Work Together
+                {t('nav.letsWorkTogether')}
                 <HiArrowRight className="size-4" />
               </a>
             </>
@@ -232,25 +254,31 @@ export function Header() {
               onClick={(e) => scrollToSection(e, '#lets-work-together')}
               className="inline-flex items-center gap-1.5 rounded-xl bg-[var(--laneta-purple)] px-4 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-[var(--laneta-purple)]/90 hover:shadow-lg"
             >
-              Let&apos;s Work Together
+              {t('nav.letsWorkTogether')}
               <HiArrowRight className="size-4" />
             </a>
           </>
           )}
+
+          {/* Language switcher — desktop */}
+          <LanguageSwitcher />
         </nav>
 
-        {/* Mobile menu button — shrink-0 para que no se empuje a la esquina */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen((o) => !o)}
-          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg min-[950px]:hidden ${
-            isLightPageTop || isScrolled ? 'text-slate-700' : 'text-white'
-          }`}
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <HiX className="size-6" /> : <HiMenu className="size-6" />}
-        </button>
+        {/* Mobile: language + menu button */}
+        <div className="flex items-center gap-2 min-[950px]:hidden">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            onClick={() => setMobileOpen((o) => !o)}
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
+              isLightPageTop || isScrolled ? 'text-slate-700' : 'text-white'
+            }`}
+            aria-label={mobileOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <HiX className="size-6" /> : <HiMenu className="size-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -271,7 +299,7 @@ export function Header() {
                     onClick={closeMobile}
                     className="rounded-lg px-4 py-3 text-left font-medium text-slate-800 hover:bg-[var(--laneta-purple)]/10 hover:text-[var(--laneta-purple)]"
                   >
-                    Home
+                    {t('nav.home')}
                   </Link>
                   {pageSectionLinks.map((link) => {
                     const isActive = activeSectionHref === link.href
@@ -327,7 +355,7 @@ export function Header() {
                 }}
                 className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-[var(--laneta-purple)] px-4 py-3 font-semibold text-white shadow-md"
               >
-                Let&apos;s Work Together
+                {t('nav.letsWorkTogether')}
                 <HiArrowRight className="size-4" />
               </a>
             </nav>
