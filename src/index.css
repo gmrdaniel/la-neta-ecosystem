@@ -1,7 +1,21 @@
 @import "tailwindcss";
 
+/* Elevn brand wordmark font (public/ELEVEN FONT.ttf) */
+@font-face {
+  font-family: "Elevn";
+  src: url("/ELEVEN%20FONT.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Aplica la fuente de marca Elevn a la palabra "Elevn" donde aparezca */
+.font-elevn {
+  font-family: "Elevn", "Montserrat", system-ui, sans-serif;
 }
 
 /* La Neta brand palette — usar en tarjetas flotantes y acentos */

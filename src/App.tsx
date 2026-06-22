@@ -7,6 +7,7 @@ import { WhoIsLaNeta } from './sections/WhoIsLaNeta'
 //import { BranchOfficeLocations } from './sections/BranchOfficeLocations'
 import { PartnershipsAlliances } from './sections/PartnershipsAlliances'
 import { CreatorSupplyEcosystem } from './sections/CreatorSupplyEcosystem'
+import { ForBrands } from './sections/ForBrands'
 import { LetsWorkTogetherSection } from './sections/theAdFactory/LetsWorkTogetherSection'
 import { ServicesPage } from './pages/ServicesPage'
 
@@ -24,6 +25,7 @@ function App() {
               {/* B2B: Partnerships right after main offer = proof before second pillar (Elevn) and CTA */}
               <PartnershipsAlliances />
               <CreatorSupplyEcosystem />
+              <ForBrands />
               {/*<BranchOfficeLocations />*/}
               <div id="lets-work-together" className="scroll-mt-24 bg-[var(--laneta-bg)] py-16 md:py-20">
                 <LetsWorkTogetherSection variant="global" />

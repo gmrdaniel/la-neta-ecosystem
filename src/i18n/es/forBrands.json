@@ -1,0 +1,18 @@
+{
+  "eyebrow": "La Neta para tu marca",
+  "title": "Para empresas y negocios",
+  "subtitle": "Dos formas de empezar a posicionar tu marca en redes con La Neta.",
+  "badge": "Gratis",
+  "cta": "Conoce más",
+  "previewAlt": "{{name}} — vista previa del sitio",
+  "business": {
+    "eyebrow": "La Neta Business",
+    "title": "La Neta Business",
+    "description": "Conoce el producto que diseñamos para empresas que quieren posicionarse en Redes Sociales."
+  },
+  "ads": {
+    "eyebrow": "Estrategia 1:1",
+    "title": "Agenda tu llamada estratégica con nosotros",
+    "description": "Hablemos de tu marca y armemos un plan a la medida para crecer en redes."
+  }
+}

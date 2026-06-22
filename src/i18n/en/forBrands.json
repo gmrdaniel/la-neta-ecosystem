@@ -1,0 +1,18 @@
+{
+  "eyebrow": "For businesses & brands",
+  "title": "Get started",
+  "subtitle": "Two ways to start positioning your brand on social media with La Neta.",
+  "badge": "Free",
+  "cta": "Learn more",
+  "previewAlt": "{{name}} — site preview",
+  "business": {
+    "eyebrow": "La Neta Business",
+    "title": "La Neta Business",
+    "description": "Discover the product we built for companies that want to grow their presence on social media."
+  },
+  "ads": {
+    "eyebrow": "1:1 Strategy",
+    "title": "Book your strategy call with us",
+    "description": "Let's talk about your brand and build a tailored plan to grow on social media."
+  }
+}

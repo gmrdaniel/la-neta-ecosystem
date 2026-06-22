@@ -1,0 +1,60 @@
+{
+  "contentTalent": "Infraestructura de CONTENIDO Y TALENTO",
+  "forBrands": "Para marcas · Global · Digital · Creadores",
+  "tagline": "Líderes del ecosistema digital",
+  "trustedBy": "Confianza de & socios oficiales",
+  "letsWorkTogether": "Trabajemos Juntos",
+  "stats": {
+    "impressions": "IMPRESIONES GENERADAS",
+    "views": "VISTAS POR AÑO",
+    "videos": "VIDEOS PRODUCIDOS"
+  },
+  "positioning": "500+ MARCAS LÍDERES · 98% RETENCIÓN DE CLIENTES",
+  "whatWeOffer": "LO QUE OFRECEMOS",
+  "previousService": "Servicio anterior",
+  "nextService": "Siguiente servicio",
+  "goToSlide": "Ir a diapositiva {{number}}",
+  "slides": {
+    "strategyCreative": {
+      "title": "ESTRATEGIA Y CREATIVIDAD",
+      "metric": "3x",
+      "metricLabel": "mayor engagement vs. anuncios estándar",
+      "impact": "Campañas que rompen el ruido.",
+      "copy": "Conceptos de alto impacto diseñados para hacerse virales. No seguimos tendencias, las creamos. De la idea a la ejecución, cada concepto está hecho para dominar feeds y convertir."
+    },
+    "topTierTalent": {
+      "title": "TALENTO DE PRIMER NIVEL",
+      "metric": "4,000+",
+      "metricLabel": "creadores verificados en nuestra red",
+      "impact": "Personas reales. Resultados reales. Sin peso muerto.",
+      "copy": "Seleccionamos creadores que realmente mueven la aguja. Acceso al mejor talento en todos los nichos y regiones. Tu marca en las manos correctas, siempre."
+    },
+    "flawlessOps": {
+      "title": "OPERACIONES IMPECABLES",
+      "metric": "21",
+      "metricLabel": "días del brief a la entrega",
+      "impact": "Tú te enfocas en la visión. Nosotros nos encargamos del resto.",
+      "copy": "Contratos, facturas, derechos y logística—todo gestionado. Un solo punto de contacto, plazos claros, cero sorpresas. Escala sin el dolor de cabeza operativo."
+    },
+    "fullServiceFire": {
+      "title": "SERVICIO INTEGRAL",
+      "metric": "100%",
+      "metricLabel": "producción llave en mano",
+      "impact": "De la idea a la campaña en vivo—nosotros nos encargamos."
+    },
+    "dataAnalytics": {
+      "title": "DATOS Y ANÁLISIS",
+      "metric": "Claros",
+      "metricLabel": "reportes que muestran qué funcionó",
+      "impact": "Deja de adivinar. Empieza a optimizar.",
+      "copy": "Dashboards de rendimiento que te dicen exactamente qué generó resultados. Atribución, benchmarks e insights accionables para que cada dólar rinda más."
+    },
+    "eliteScouting": {
+      "title": "SCOUTING ÉLITE",
+      "metric": "24/7",
+      "metricLabel": "descubrimiento y verificación de talento",
+      "impact": "Encontramos los creadores que tu competencia aún no conoce.",
+      "copy": "Nuestro equipo descubre y verifica nuevo talento constantemente. Acceso prioritario a estrellas emergentes y expertos de nicho. La cara perfecta para tu marca, antes que todos."
+    }
+  }
+}
