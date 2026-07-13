@@ -22,10 +22,11 @@ function App() {
             <>
               <HeroSection />
               <WhoIsLaNeta />
+              {/* For businesses & brands justo debajo de About Us (antes estaba muy abajo). */}
+              <ForBrands />
               {/* B2B: Partnerships right after main offer = proof before second pillar (Elevn) and CTA */}
               <PartnershipsAlliances />
               <CreatorSupplyEcosystem />
-              <ForBrands />
               {/*<BranchOfficeLocations />*/}
               <div id="lets-work-together" className="scroll-mt-24 bg-[var(--laneta-bg)] py-16 md:py-20">
                 <LetsWorkTogetherSection variant="global" />

@@ -53,11 +53,7 @@ export function Header() {
     pathname === '/the-glitch' ||
     pathname === '/the-hook-hunter'
 
-  const elevnHubLabel = (
-    <span>
-      <span className="font-elevn">Elevn</span> Hub
-    </span>
-  )
+  const forCreatorsLabel = t('nav.forCreators')
 
   const SERVICES_PAGE_SECTION_LINKS = [
     { href: '#problems-vs-solutions', label: t('nav.solutions') },
@@ -69,13 +65,13 @@ export function Header() {
 
   const HOME_PAGE_SECTION_LINKS = [
     { href: '#who-is-la-neta', label: t('nav.aboutUs') },
-    { href: '#elevn', label: elevnHubLabel },
+    { href: '#elevn', label: forCreatorsLabel },
     { href: '#for-brands', label: t('nav.forBrands') },
   ]
 
   const NAV_LINKS = [
     { href: '#who-is-la-neta', label: t('nav.aboutUs') },
-    { href: '#elevn', label: elevnHubLabel },
+    { href: '#elevn', label: forCreatorsLabel },
     { href: '#for-brands', label: t('nav.forBrands') },
   ]
 
